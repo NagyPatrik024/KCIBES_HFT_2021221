@@ -5,6 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="myDB.mdf" />
+    <None Remove="myDB_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="myDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="myDB_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KCIBES_HFT_2021221.Models\KCIBES_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
