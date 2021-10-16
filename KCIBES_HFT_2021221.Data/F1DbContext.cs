@@ -8,7 +8,7 @@ using KCIBES_HFT_2021221.Models;
 
 namespace KCIBES_HFT_2021221.Data
 {
-    class F1DbContext : DbContext
+    public class F1DbContext : DbContext
     {
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Team> Teams { get; set; }

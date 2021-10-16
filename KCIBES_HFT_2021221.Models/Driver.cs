@@ -21,7 +21,7 @@ namespace KCIBES_HFT_2021221.Models
             [NotMapped]
             public virtual Motor Motor { get; set; }
 
-        [MaxLength(120)]
+            [MaxLength(120)]
             public string Name { get; set; }
             public string DateofBirth { get; set; }
             public int Wins { get; set; }
