@@ -18,6 +18,9 @@ namespace KCIBES_HFT_2021221.Models
             [NotMapped]
             public virtual ICollection<Team> Teams { get; set; }
 
+            [NotMapped]
+            public virtual ICollection<Driver> Drivers { get; set; }
+
             [MaxLength(120)]
             public string Type { get; set; }
 

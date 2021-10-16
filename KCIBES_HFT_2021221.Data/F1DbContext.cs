@@ -38,6 +38,14 @@ namespace KCIBES_HFT_2021221.Data
                 .HasForeignKey(driver => driver.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
             });
+            modelBuilder.Entity<Driver>(entity =>
+            {
+                entity
+                .HasOne(driver => driver.Motor)
+                .WithMany(motor => motor.Drivers)
+                .HasForeignKey(driver => driver.MotorId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
             modelBuilder.Entity<Team>(entity =>
             {
                 entity
@@ -46,6 +54,9 @@ namespace KCIBES_HFT_2021221.Data
                 .HasForeignKey(team => team.MotorId)
                 .OnDelete(DeleteBehavior.Restrict);
             });
+
+            
+
 
             Motor Ferrari = new Motor() { MotorId = 1, Type = "Ferrari 064" };
             Motor Mercedes = new Motor() { MotorId = 2, Type = "Mercedes M11 EQ" };
@@ -63,7 +74,7 @@ namespace KCIBES_HFT_2021221.Data
             Team TeamAlfaRomeo = new Team() { TeamId = 9, Name = "Alfa Romeo Racing", MotorId = Ferrari.MotorId, Team_Chief = "Frédéric Vasseur" };
             Team TeamHass = new Team() { TeamId = 10, Name = "Haas", MotorId = Ferrari.MotorId, Team_Chief = "Guenther Steiner"};
 
-            Driver VER = new Driver() { DriverId = 1, Name = "Max Verstappen", DateofBirth = "30/09/1997", Wins = 17 , TeamId=TeamRedBull.TeamId};
+            Driver VER = new Driver() { DriverId = 1, Name = "Max Verstappen", DateofBirth = "30/09/1997", Wins = 17 , TeamId=TeamRedBull.TeamId };
             Driver HAM = new Driver() { DriverId = 2, Name = "Lewis Hamilton", DateofBirth = "07/01/1985", Wins = 100, TeamId =TeamMercedes.TeamId};
             Driver BOT = new Driver() { DriverId = 3, Name = "Valtteri Bottas", DateofBirth = "28/08/1989", Wins = 10, TeamId = TeamMercedes.TeamId };
             Driver NOR = new Driver() { DriverId = 4, Name = "Lando Norris", DateofBirth = "13/11/1999", Wins = 0, TeamId = TeamMclaren.TeamId };
@@ -83,6 +94,11 @@ namespace KCIBES_HFT_2021221.Data
             Driver GIO = new Driver() { DriverId = 18, Name = "Antonio Giovinazzi", DateofBirth = "14/12/1993", Wins = 0, TeamId = TeamAlfaRomeo.TeamId };
             Driver MSC = new Driver() { DriverId = 19, Name = "Mick Schumacher", DateofBirth = "22/03/1999", Wins = 0, TeamId = TeamHass.TeamId };
             Driver MAZ = new Driver() { DriverId = 20, Name = "Nikita Mazepin", DateofBirth = "02/03/1999", Wins = 0, TeamId = TeamHass.TeamId };
+
+            modelBuilder.Entity<Motor>().HasData(Ferrari, Mercedes, Honda, Renault);
+            modelBuilder.Entity<Team>().HasData(TeamFerrari, TeamMclaren, TeamAlfaRomeo, TeamAlphatauri, TeamAlpine, TeamAstonMartin, TeamHass, TeamMercedes, TeamRedBull, TeamWilliams);
+            modelBuilder.Entity<Driver>().HasData(VER, HAM, BOT, NOR, PER, SAI, LEC, RIC, GAS, ALO, OCO, VET, STR, TSU, RUS, LAT, RAI, GIO, MSC, MAZ);
+
         }
     }
 }

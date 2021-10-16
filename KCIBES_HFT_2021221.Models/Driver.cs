@@ -18,14 +18,20 @@ namespace KCIBES_HFT_2021221.Models
             [NotMapped]
             public virtual Team Team { get; set; }
 
-            [MaxLength(120)]
+            [NotMapped]
+            public virtual Motor Motor { get; set; }
+
+        [MaxLength(120)]
             public string Name { get; set; }
             public string DateofBirth { get; set; }
             public int Wins { get; set; }
 
             [ForeignKey(nameof(Models.Team))]
             public int TeamId { get; set; }
-        
+
+            [ForeignKey(nameof(Models.Motor))]
+            public int MotorId { get; set; }
+
 
     }
 }
