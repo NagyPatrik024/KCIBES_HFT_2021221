@@ -16,7 +16,7 @@ namespace KCIBES_HFT_2021221.Repository
         }
         public void UpdateType(int id, string motortype)
         {
-            Motor motor = _ctx.Motors.FirstOrDefault(x => x.MotorId == id);
+            Motor motor = _ctx.Motors.FirstOrDefault(x => x.Id == id);
             if (motor != null)
             {
                 motor.Type = motortype;
@@ -36,7 +36,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         public override void DeleteOne(int id)
         {
-            Motor motor = _ctx.Motors.FirstOrDefault(x => x.MotorId == id);
+            Motor motor = _ctx.Motors.FirstOrDefault(x => x.Id == id);
             if (motor != null)
             {
                 _ctx.Motors.Remove(motor);
@@ -50,7 +50,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         public override Motor GetOne(int id)
         {
-            Motor motor = _ctx.Motors.FirstOrDefault(x => x.MotorId == id);
+            Motor motor = _ctx.Motors.FirstOrDefault(x => x.Id == id);
             if (motor != null)
             {
                 return motor;

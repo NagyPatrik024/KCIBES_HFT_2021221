@@ -17,7 +17,7 @@ namespace KCIBES_HFT_2021221.Repository
         }
         public void UpdateTeam(int id, Team team)
         {
-            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.DriverId == id);
+            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
             if (driver != null)
             {
                 driver.Team = team;
@@ -37,7 +37,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         public override void DeleteOne(int id)
         {
-            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.DriverId == id);
+            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
             if (driver != null)
             {
                 _ctx.Drivers.Remove(driver);
@@ -52,7 +52,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         public override Driver GetOne(int id)
         {
-            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.DriverId == id);
+            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
             if (driver != null)
             {
                 return driver;

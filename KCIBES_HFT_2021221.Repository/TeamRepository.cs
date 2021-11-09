@@ -17,7 +17,7 @@ namespace KCIBES_HFT_2021221.Repository
         }
         public void UpdateTeamChief(int id, string chiefname)
         {
-            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.TeamId == id);
+            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.Id == id);
             if (team != null)
             {
                 team.Team_Chief = chiefname;
@@ -37,7 +37,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         public override void DeleteOne(int id)
         {
-            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.TeamId == id);
+            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.Id == id);
             if (team != null)
             {
                 _ctx.Teams.Remove(team);
@@ -52,7 +52,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         public override Team GetOne(int id)
         {
-            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.TeamId == id);
+            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.Id == id);
             if (team != null)
             {
                 return team;

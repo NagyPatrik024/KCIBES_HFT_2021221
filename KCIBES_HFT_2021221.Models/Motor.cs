@@ -8,25 +8,26 @@ using System.Threading.Tasks;
 
 namespace KCIBES_HFT_2021221.Models
 {
-    
-        [Table("Motors")]
-        public class Motor
-        {
-            [Key]
-            public int MotorId { get; set; }
 
-            [NotMapped]
-            public virtual ICollection<Team> Teams { get; set; }
+    [Table("Motors")]
+    public class Motor
+    {
+        [Key]
+        public int Id { get; set; }
 
-            [NotMapped]
-            public virtual ICollection<Driver> Drivers { get; set; }
+        [NotMapped]
+        public virtual ICollection<Team> Teams { get; set; }
 
-            [MaxLength(120)]
-            public string Type { get; set; }
+        [NotMapped]
+        public virtual ICollection<Driver> Drivers { get; set; }
+
+        [MaxLength(120)]
+        public string Type { get; set; }
 
         public Motor()
         {
             Teams = new HashSet<Team>();
+            Drivers = new HashSet<Driver>();
         }
 
 

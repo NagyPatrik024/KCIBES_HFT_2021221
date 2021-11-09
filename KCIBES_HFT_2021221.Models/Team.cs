@@ -13,7 +13,7 @@ namespace KCIBES_HFT_2021221.Models
     public class Team
     {
         [Key]
-        public int TeamId { get; set; }
+        public int Id { get; set; }
 
         [NotMapped]
         public virtual ICollection<Driver> Drivers { get; set; }
