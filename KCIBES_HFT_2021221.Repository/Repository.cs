@@ -27,7 +27,5 @@ namespace KCIBES_HFT_2021221.Repository
         }
 
         public abstract T GetOne(int id);
-
-        public abstract void UpdateOne(int id, T item);
     }
 }

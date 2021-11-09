@@ -15,7 +15,7 @@ namespace KCIBES_HFT_2021221.Repository
         {
 
         }
-        public void ChangeTeam(int id, Team team)
+        public void UpdateTeam(int id, Team team)
         {
             Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.DriverId == id);
             if (driver != null)
@@ -63,18 +63,6 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-        public override void UpdateOne(int id, Driver item)
-        {
-            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.DriverId == id);
-            if (driver != null)
-            {
-                _ctx.Drivers.Remove(driver);
-                _ctx.SaveChanges();
-            }
-            else
-            {
-                throw new Exception(); // TODO 
-            }
-        }
+        
     }
 }

@@ -15,7 +15,7 @@ namespace KCIBES_HFT_2021221.Repository
         {
 
         }
-        public void ChangeTeamChief(int id, string chiefname)
+        public void UpdateTeamChief(int id, string chiefname)
         {
             Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.TeamId == id);
             if (team != null)
@@ -63,19 +63,7 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-        public override void UpdateOne(int id, Team item)
-        {
-            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.TeamId == id);
-            if (team != null)
-            {
-                _ctx.Teams.Remove(team);
-                _ctx.SaveChanges();
-            }
-            else
-            {
-                throw new Exception(); // TODO 
-            }
-        }
+       
 
 
     }

@@ -12,8 +12,6 @@ namespace KCIBES_HFT_2021221.Repository
         T GetOne(int id);
         IQueryable<T> GetAll();
 
-        void UpdateOne(int id, T item);
-
         void DeleteOne(int id);
 
         void CreateOne(T item);
@@ -21,14 +19,14 @@ namespace KCIBES_HFT_2021221.Repository
 
     public interface IDriverRepository : IRepository<Driver>
     {
-        void ChangeTeam(int id, Team team);
+        void UpdateTeam(int id, Team team);
     }
     public interface IMotorRepository : IRepository<Motor>
     {
-        void ChangeType(int id, string motortype);
+        void UpdateType(int id, string motortype);
     }
     public interface ITeamRepository : IRepository<Team>
     {
-        void ChangeTeamChief(int id, string chiefname);
+        void UpdateTeamChief(int id, string chiefname);
     }
 }
