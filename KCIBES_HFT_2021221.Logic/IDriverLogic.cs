@@ -16,6 +16,8 @@ namespace KCIBES_HFT_2021221.Logic
         void UpdateDriver(int id, Driver driver);
         IEnumerable<string> GetDriversOfaTeam(string teamname);
 
+        IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDriver(); 
+
 
 
     }

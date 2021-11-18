@@ -50,6 +50,14 @@ namespace KCIBES_HFT_2021221.Logic
             return driverRepo.GetOne(id);
         }
 
+        public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDriver()
+        {
+            return from x in driverRepo.GetAll()
+                   join z in teamRepo.GetAll() on x.TeamId equals z.Id
+                   let joinedItem = new { x.Name, z.Team_Chief }
+                   select new KeyValuePair<string, string>(joinedItem.Name, joinedItem.Team_Chief);
+        }
+
         public void UpdateDriver(int id, Driver driver)
         {
             driverRepo.UpdateDriver(id, driver);

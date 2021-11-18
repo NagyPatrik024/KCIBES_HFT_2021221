@@ -72,10 +72,6 @@ namespace KCIBES_HFT_2021221.Logic
 
         }
 
-        public IEnumerable<Team> TeamsWins()
-        {
-            throw new NotImplementedException();
-        }
 
         public void UpdateTeam(int id, Team team)
         {

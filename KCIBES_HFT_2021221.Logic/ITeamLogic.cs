@@ -16,8 +16,6 @@ namespace KCIBES_HFT_2021221.Logic
         void CreateOne(Team team);
         void UpdateTeam(int id, Team team);
 
-        IEnumerable<Team> TeamsWins();
-
         IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motorname);
 
         IEnumerable<KeyValuePair<string,double>> GetTeamsAVGAge();
