@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace KCIBES_HFT_2021221.Logic
 {
-    class DriverLogic
+    public class DriverLogic
     {
+
     }
 }

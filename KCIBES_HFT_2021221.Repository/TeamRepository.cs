@@ -16,18 +16,13 @@ namespace KCIBES_HFT_2021221.Repository
         {
             this.db = db;
         }
-        public void UpdateTeamChief(int id, string chiefname)
+        public void UpdateTeam(int id, Team team)
         {
-            Team team = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
-            if (team != null)
-            {
-                team.Team_Chief = chiefname;
-                db.SaveChanges();
-            }
-            else
-            {
-                throw new Exception(); // TODO 
-            }
+            Team team_ = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
+            DeleteOne(id);
+            CreateOne(team);
+            db.SaveChanges();
+
         }
 
         public void CreateOne(Team team)

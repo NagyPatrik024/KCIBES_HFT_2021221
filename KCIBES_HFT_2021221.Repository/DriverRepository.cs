@@ -15,18 +15,11 @@ namespace KCIBES_HFT_2021221.Repository
         {
             this.db = db;
         }
-        public void UpdateTeam(int id, Team team)
+        public void UpdateDriver(int id, Driver driver)
         {
-            Driver driver = db.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
-            if (driver != null)
-            {
-                driver.Team = team;
-                db.SaveChanges();
-            }
-            else
-            {
-                throw new Exception(); // TODO 
-            }
+            DeleteOne(id);
+            CreateOne(driver);
+            db.SaveChanges();
         }
 
         public void CreateOne(Driver driver)
@@ -68,6 +61,6 @@ namespace KCIBES_HFT_2021221.Repository
             return db.Drivers;
         }
 
-        
+
     }
 }

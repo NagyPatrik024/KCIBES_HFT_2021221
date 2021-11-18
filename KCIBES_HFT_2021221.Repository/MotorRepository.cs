@@ -15,18 +15,12 @@ namespace KCIBES_HFT_2021221.Repository
         {
             this.db = db;
         }
-        public void UpdateType(int id, string motortype)
+        public void UpdateMotor(int id, Motor motor)
         {
-            Motor motor = db.Motors.FirstOrDefault(x => x.Id == id);
-            if (motor != null)
-            {
-                motor.Type = motortype;
-                db.SaveChanges();
-            }
-            else 
-            {
-                throw new Exception();
-            }
+            Motor motor_ = db.Motors.FirstOrDefault(x => x.Id == id);
+            DeleteOne(id);
+            CreateOne(motor);
+            db.SaveChanges();
         }
 
         public void CreateOne(Motor motor)

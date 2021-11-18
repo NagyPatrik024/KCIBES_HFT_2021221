@@ -5,13 +5,12 @@ namespace KCIBES_HFT_2021221.Repository
 {
     public interface ITeamRepository
     {
-
         Team GetOne(int id);
         IQueryable<Team> GetAll();
 
         void DeleteOne(int id);
 
         void CreateOne(Team Team);
-        void UpdateTeamChief(int id, string chiefname);
+        void UpdateTeam(int id, Team team);
     }
 }
