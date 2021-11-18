@@ -12,6 +12,6 @@ namespace KCIBES_HFT_2021221.Repository
         void DeleteOne(int id);
 
         void CreateOne(Driver driver);
-        void UpdateTeam(Team team);   
+        void UpdateTeam(int id, Team team);   
     }
 }

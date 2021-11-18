@@ -10,18 +10,18 @@ namespace KCIBES_HFT_2021221.Repository
 {
     public class DriverRepository : IDriverRepository
     {
-        
-        public DriverRepository(F1DbContext ctx)
+        F1DbContext db;
+        public DriverRepository(F1DbContext db)
         {
-
+            this.db = db;
         }
         public void UpdateTeam(int id, Team team)
         {
-            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
+            Driver driver = db.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
             if (driver != null)
             {
                 driver.Team = team;
-                _ctx.SaveChanges();
+                db.SaveChanges();
             }
             else
             {
@@ -29,19 +29,19 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-        public override void CreateOne(Driver driver)
+        public void CreateOne(Driver driver)
         {
-            _ctx.Drivers.Add(driver);
-            _ctx.SaveChanges();
+            db.Drivers.Add(driver);
+            db.SaveChanges();
         }
 
-        public override void DeleteOne(int id)
+        public void DeleteOne(int id)
         {
-            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
+            Driver driver = db.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
             if (driver != null)
             {
-                _ctx.Drivers.Remove(driver);
-                _ctx.SaveChanges();
+                db.Drivers.Remove(driver);
+                db.SaveChanges();
             }
             else
             {
@@ -50,9 +50,9 @@ namespace KCIBES_HFT_2021221.Repository
 
         }
 
-        public override Driver GetOne(int id)
+        public Driver GetOne(int id)
         {
-            Driver driver = _ctx.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
+            Driver driver = db.Drivers.FirstOrDefault<Driver>(x => x.Id == id);
             if (driver != null)
             {
                 return driver;
@@ -61,6 +61,11 @@ namespace KCIBES_HFT_2021221.Repository
             {
                 throw new Exception(); // TODO 
             }
+        }
+
+        public IQueryable<Driver> GetAll()
+        {
+            return db.Drivers;
         }
 
         
