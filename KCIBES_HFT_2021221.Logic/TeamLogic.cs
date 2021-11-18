@@ -12,11 +12,13 @@ namespace KCIBES_HFT_2021221.Logic
     {
         ITeamRepository teamRepo;
         IDriverRepository driverRepo;
+        IMotorRepository motorRepo;
 
-        public TeamLogic(ITeamRepository teamRepo, IDriverRepository driverRepo)
+        public TeamLogic(ITeamRepository teamRepo, IDriverRepository driverRepo, IMotorRepository motorRepo)
         {
             this.teamRepo = teamRepo;
             this.driverRepo = driverRepo;
+            this.motorRepo = motorRepo;
         }
 
         public void CreateOne(Team team)
@@ -48,14 +50,26 @@ namespace KCIBES_HFT_2021221.Logic
                    select new KeyValuePair<string, double>(grp.Key, grp.Average(x => x.Age));
         }
 
-        public IEnumerable<Team> GetTeamsWhereWinsGreaterThan(int wins)
+        public IEnumerable<KeyValuePair<string, double>> GetTeamsWinsSUM()
         {
-            throw new NotImplementedException();
+            return from x in teamRepo.GetAll()
+                   join z in driverRepo.GetAll() on x.Id equals z.TeamId
+                   let joinedItem = new { x.Name, z.Wins }
+                   group joinedItem by joinedItem.Name into grp
+                   select new KeyValuePair<string, double>(grp.Key, grp.Sum(x => x.Wins));
         }
 
-        public IEnumerable<Team> GetTeamsWithMercedesMotor()
+        public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motorname)
         {
-            throw new NotImplementedException();
+            var q1 = from x in motorRepo.GetAll()
+                     where x.Type == motorname
+                     select x.Id;
+            var q2 = from x in teamRepo.GetAll()
+                     where q1.Contains(x.MotorId)
+                     select new KeyValuePair<string, string>(x.Name, x.Motor.Type);
+            return q2;
+
+
         }
 
         public IEnumerable<Team> TeamsWins()

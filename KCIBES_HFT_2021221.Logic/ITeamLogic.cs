@@ -18,10 +18,10 @@ namespace KCIBES_HFT_2021221.Logic
 
         IEnumerable<Team> TeamsWins();
 
-        IEnumerable<Team> GetTeamsWithMercedesMotor();
+        IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motorname);
 
         IEnumerable<KeyValuePair<string,double>> GetTeamsAVGAge();
 
-        IEnumerable<Team> GetTeamsWhereWinsGreaterThan(int wins);
+        IEnumerable<KeyValuePair<string, double>> GetTeamsWinsSUM();
     }
 }

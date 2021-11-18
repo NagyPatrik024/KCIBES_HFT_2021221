@@ -59,7 +59,7 @@ namespace KCIBES_HFT_2021221.Data
             Motor Ferrari = new Motor() { Id = 1, Type = "Ferrari 064" };
             Motor Mercedes = new Motor() { Id = 2, Type = "Mercedes M11 EQ" };
             Motor Honda = new Motor() { Id = 3, Type = "Honda RA620H" };
-            Motor Renault = new Motor() { Id = 4, Type = "	Renault E-Tech 20B" };
+            Motor Renault = new Motor() { Id = 4, Type = "Renault E-Tech 20B" };
 
             Team TeamFerrari = new Team() { Id = 1, Name = "Ferrari", MotorId = 1, Team_Chief = "Mattia Binotto" };
             Team TeamMclaren = new Team() { Id = 2, Name = "Mclaren", MotorId = 2, Team_Chief = "Andreas Seidl" };
