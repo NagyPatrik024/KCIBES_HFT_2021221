@@ -14,8 +14,14 @@ namespace KCIBES_HFT_2021221.Logic
         void DeleteOne(int id);
 
         void CreateOne(Team Team);
-        void UpdateTeamChief(int id, string chiefname);
+        void UpdateTeam(int id, Team team);
 
         IEnumerable<Team> TeamsWins();
+
+        IEnumerable<Team> GetTeamsWithMercedesMotor();
+
+        IEnumerable<Team> GetTeamsAVGAge();
+
+        IEnumerable<Team> GetTeamsWhereWinsGreaterThan(int wins);
     }
 }

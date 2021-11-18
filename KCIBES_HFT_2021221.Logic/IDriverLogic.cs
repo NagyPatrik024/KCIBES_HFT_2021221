@@ -13,7 +13,12 @@ namespace KCIBES_HFT_2021221.Logic
         IEnumerable<Driver> GetAll();
         void DeleteOne(int id);
         void CreateOne(Driver driver);
-        void UpdateDriver(int id, Team team);
-        IEnumerable<Driver> DriversBirthBeforeDate(DateTime time);
+        void UpdateDriver(int id, Driver drive);
+       
+
+        IEnumerable<Driver> GetDriversOfaTeam(string teamname);
+
+        
+
     }
 }

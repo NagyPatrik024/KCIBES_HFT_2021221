@@ -14,6 +14,8 @@ namespace KCIBES_HFT_2021221.Logic
         void DeleteOne(int id);
 
         void CreateOne(Motor motor);
-        void UpdateType(int id, string motortype);
+        void UpdateMotor(int id, Motor motor);
+
+        
     }
 }

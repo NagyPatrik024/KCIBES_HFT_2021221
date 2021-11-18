@@ -84,7 +84,7 @@ namespace KCIBES_HFT_2021221.Data
             Driver GAS = new Driver() { Id = 9, Name = "Pierre Gasly", DateofBirth = "07/02/1996", Wins = 1, TeamId = 6, MotorId = Honda.Id };
             Driver ALO = new Driver() { Id = 10, Name = "Fernando Alonso", DateofBirth = "29/07/1981", Wins = 32, TeamId = 5, MotorId = Mercedes.Id };
             Driver OCO = new Driver() { Id = 11, Name = "Esteban Ocon", DateofBirth = "17/09/1996", Wins = 1, TeamId = 5, MotorId = Mercedes.Id };
-            Driver VET = new Driver() { Id = 12, Name = "Sebastian Vetel", DateofBirth = "03/07/1987", Wins = 53, TeamId = 7, MotorId = Mercedes.Id };
+            Driver VET = new Driver() { Id = 12, Name = "Sebastian Vettel", DateofBirth = "03/07/1987", Wins = 53, TeamId = 7, MotorId = Mercedes.Id };
             Driver STR = new Driver() { Id = 13, Name = "Lance Stroll", DateofBirth = "03/07/1987", Wins = 0, TeamId = 7, MotorId = Mercedes.Id };
             Driver TSU = new Driver() { Id = 14, Name = "Yuki Tsunoda", DateofBirth = "11/05/2000", Wins = 0, TeamId = 6, MotorId = Honda.Id };
             Driver RUS = new Driver() { Id = 15, Name = "George Russel", DateofBirth = "15/02/1998", Wins = 0, TeamId = 8, MotorId = Mercedes.Id };
