@@ -8,19 +8,20 @@ using System.Threading.Tasks;
 
 namespace KCIBES_HFT_2021221.Repository
 {
-    public class MotorRepository : Repository<Motor>, IMotorRepository
+    public class MotorRepository : IMotorRepository
     {
-        public MotorRepository(F1DbContext ctx) : base(ctx)
+        F1DbContext db;
+        public MotorRepository(F1DbContext db)
         {
-
+            this.db = db;
         }
         public void UpdateType(int id, string motortype)
         {
-            Motor motor = _ctx.Motors.FirstOrDefault(x => x.Id == id);
+            Motor motor = db.Motors.FirstOrDefault(x => x.Id == id);
             if (motor != null)
             {
                 motor.Type = motortype;
-                _ctx.SaveChanges();
+                db.SaveChanges();
             }
             else 
             {
@@ -28,19 +29,19 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-        public override void CreateOne(Motor motor)
+        public void CreateOne(Motor motor)
         {
-            _ctx.Motors.Add(motor);
-            _ctx.SaveChanges();
+            db.Motors.Add(motor);
+            db.SaveChanges();
         }
 
-        public override void DeleteOne(int id)
+        public void DeleteOne(int id)
         {
-            Motor motor = _ctx.Motors.FirstOrDefault(x => x.Id == id);
+            Motor motor = db.Motors.FirstOrDefault(x => x.Id == id);
             if (motor != null)
             {
-                _ctx.Motors.Remove(motor);
-                _ctx.SaveChanges();
+                db.Motors.Remove(motor);
+                db.SaveChanges();
             }
             else
             {
@@ -48,9 +49,9 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-        public override Motor GetOne(int id)
+        public Motor GetOne(int id)
         {
-            Motor motor = _ctx.Motors.FirstOrDefault(x => x.Id == id);
+            Motor motor = db.Motors.FirstOrDefault(x => x.Id == id);
             if (motor != null)
             {
                 return motor;
@@ -61,6 +62,9 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-      
+        public IQueryable<Motor> GetAll()
+        {
+            return db.Motors;
+        }
     }
 }

@@ -8,20 +8,21 @@ using System.Threading.Tasks;
 
 namespace KCIBES_HFT_2021221.Repository
 {
-    public class TeamRepository : Repository<Team>, ITeamRepository
+    public class TeamRepository : ITeamRepository
     {
 
-        public TeamRepository(F1DbContext ctx) : base(ctx)
+        F1DbContext db;
+        public TeamRepository(F1DbContext db) 
         {
-
+            this.db = db;
         }
         public void UpdateTeamChief(int id, string chiefname)
         {
-            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.Id == id);
+            Team team = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
             if (team != null)
             {
                 team.Team_Chief = chiefname;
-                _ctx.SaveChanges();
+                db.SaveChanges();
             }
             else
             {
@@ -29,19 +30,19 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-        public override void CreateOne(Team team)
+        public void CreateOne(Team team)
         {
-            _ctx.Teams.Add(team);
-            _ctx.SaveChanges();
+            db.Teams.Add(team);
+            db.SaveChanges();
         }
 
-        public override void DeleteOne(int id)
+        public void DeleteOne(int id)
         {
-            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.Id == id);
+            Team team = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
             if (team != null)
             {
-                _ctx.Teams.Remove(team);
-                _ctx.SaveChanges();
+                db.Teams.Remove(team);
+                db.SaveChanges();
             }
             else
             {
@@ -50,9 +51,9 @@ namespace KCIBES_HFT_2021221.Repository
 
         }
 
-        public override Team GetOne(int id)
+        public Team GetOne(int id)
         {
-            Team team = _ctx.Teams.FirstOrDefault<Team>(x => x.Id == id);
+            Team team = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
             if (team != null)
             {
                 return team;
@@ -63,8 +64,9 @@ namespace KCIBES_HFT_2021221.Repository
             }
         }
 
-       
-
-
+        public IQueryable<Team> GetAll()
+        {
+            return db.Teams;
+        }
     }
 }

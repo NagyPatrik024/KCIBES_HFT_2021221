@@ -1,9 +1,16 @@
 ﻿using KCIBES_HFT_2021221.Models;
+using System.Linq;
 
 namespace KCIBES_HFT_2021221.Repository
 {
-    public interface IMotorRepository : IRepository<Motor>
+    public interface IMotorRepository
     {
+        Motor GetOne(int id);
+        IQueryable<Motor> GetAll();
+
+        void DeleteOne(int id);
+
+        void CreateOne(Motor motor);
         void UpdateType(int id, string motortype);
     }
 }

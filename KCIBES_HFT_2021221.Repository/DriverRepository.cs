@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace KCIBES_HFT_2021221.Repository
 {
-    public class DriverRepository : Repository<Driver>, IDriverRepository
+    public class DriverRepository : IDriverRepository
     {
-
-        public DriverRepository(F1DbContext ctx) : base(ctx)
+        
+        public DriverRepository(F1DbContext ctx)
         {
 
         }

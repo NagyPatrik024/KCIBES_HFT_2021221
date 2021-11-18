@@ -23,7 +23,6 @@ namespace KCIBES_HFT_2021221.Client
             {
                 Console.WriteLine(item.Name);
             }
-            ;
         }
     }
 }
