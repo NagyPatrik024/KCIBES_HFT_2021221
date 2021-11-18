@@ -24,7 +24,7 @@ namespace KCIBES_HFT_2021221.Models
 
         [MaxLength(120)]
         public string Name { get; set; }
-        public string DateofBirth { get; set; }
+        public int Age { get; set; }
         public int Wins { get; set; }
 
         [ForeignKey(nameof(Team))]

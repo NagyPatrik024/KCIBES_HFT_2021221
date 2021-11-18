@@ -13,14 +13,14 @@ namespace KCIBES_HFT_2021221.Logic
         IEnumerable<Team> GetAll();
         void DeleteOne(int id);
 
-        void CreateOne(Team Team);
+        void CreateOne(Team team);
         void UpdateTeam(int id, Team team);
 
         IEnumerable<Team> TeamsWins();
 
         IEnumerable<Team> GetTeamsWithMercedesMotor();
 
-        IEnumerable<Team> GetTeamsAVGAge();
+        IEnumerable<KeyValuePair<string,double>> GetTeamsAVGAge();
 
         IEnumerable<Team> GetTeamsWhereWinsGreaterThan(int wins);
     }
