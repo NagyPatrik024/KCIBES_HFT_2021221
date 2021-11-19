@@ -73,26 +73,26 @@ namespace KCIBES_HFT_2021221.Data
             Team TeamHass = new Team() { Id = 10, Name = "Haas", MotorId = 1, Team_Chief = "Guenther Steiner" };
 
 
-            Driver VER = new Driver() { Id = 1, Name = "Max Verstappen", Age = 24, Wins = 17, TeamId = TeamRedBull.Id, MotorId = Honda.Id };
-            Driver HAM = new Driver() { Id = 2, Name = "Lewis Hamilton", Age = 36, Wins = 100, TeamId = 4, MotorId = Mercedes.Id };
-            Driver BOT = new Driver() { Id = 3, Name = "Valtteri Bottas", Age = 32, Wins = 10, TeamId = 4, MotorId = Mercedes.Id };
-            Driver NOR = new Driver() { Id = 4, Name = "Lando Norris", Age = 22, Wins = 0, TeamId = 2, MotorId = Mercedes.Id };
-            Driver PER = new Driver() { Id = 5, Name = "Sergio Perez", Age = 31, Wins = 2, TeamId = 3, MotorId = Honda.Id };
-            Driver SAI = new Driver() { Id = 6, Name = "Carlos Sainz", Age = 27, Wins = 0, TeamId = 1, MotorId = Ferrari.Id };
-            Driver LEC = new Driver() { Id = 7, Name = "Charles Leclerc", Age = 24, Wins = 2, TeamId = 1, MotorId = Ferrari.Id };
-            Driver RIC = new Driver() { Id = 8, Name = "Daniel Ricciardo", Age = 32, Wins = 8, TeamId = 2, MotorId = Mercedes.Id };
-            Driver GAS = new Driver() { Id = 9, Name = "Pierre Gasly", Age = 25, Wins = 1, TeamId = 6, MotorId = Honda.Id };
-            Driver ALO = new Driver() { Id = 10, Name = "Fernando Alonso", Age = 40, Wins = 32, TeamId = 5, MotorId = Mercedes.Id };
-            Driver OCO = new Driver() { Id = 11, Name = "Esteban Ocon", Age = 25, Wins = 1, TeamId = 5, MotorId = Mercedes.Id };
-            Driver VET = new Driver() { Id = 12, Name = "Sebastian Vettel", Age = 34, Wins = 53, TeamId = 7, MotorId = Mercedes.Id };
-            Driver STR = new Driver() { Id = 13, Name = "Lance Stroll", Age = 23, Wins = 0, TeamId = 7, MotorId = Mercedes.Id };
-            Driver TSU = new Driver() { Id = 14, Name = "Yuki Tsunoda", Age = 21, Wins = 0, TeamId = 6, MotorId = Honda.Id };
-            Driver RUS = new Driver() { Id = 15, Name = "George Russel", Age = 23, Wins = 0, TeamId = 8, MotorId = Mercedes.Id };
-            Driver LAT = new Driver() { Id = 16, Name = "Nicholas Latifi", Age = 26, Wins = 0, TeamId = 8, MotorId = Mercedes.Id };
-            Driver RAI = new Driver() { Id = 17, Name = "Kimi Raikonnen", Age = 42, Wins = 21, TeamId = 9, MotorId = Ferrari.Id };
-            Driver GIO = new Driver() { Id = 18, Name = "Antonio Giovinazzi", Age = 28, Wins = 0, TeamId = 9, MotorId = Ferrari.Id };
-            Driver MSC = new Driver() { Id = 19, Name = "Mick Schumacher", Age = 22, Wins = 0, TeamId = 10, MotorId = Ferrari.Id };
-            Driver MAZ = new Driver() { Id = 20, Name = "Nikita Mazepin", Age = 22, Wins = 0, TeamId = 10, MotorId = Ferrari.Id };
+            Driver VER = new Driver() { Id = 1, Name = "Max Verstappen", Age = 24, Wins = 17, TeamId = 3, MotorId = 3 };
+            Driver HAM = new Driver() { Id = 2, Name = "Lewis Hamilton", Age = 36, Wins = 100, TeamId = 4, MotorId = 2 };
+            Driver BOT = new Driver() { Id = 3, Name = "Valtteri Bottas", Age = 32, Wins = 10, TeamId = 4, MotorId = 2};
+            Driver NOR = new Driver() { Id = 4, Name = "Lando Norris", Age = 22, Wins = 0, TeamId = 2, MotorId = 2 };
+            Driver PER = new Driver() { Id = 5, Name = "Sergio Perez", Age = 31, Wins = 2, TeamId = 3, MotorId = 3};
+            Driver SAI = new Driver() { Id = 6, Name = "Carlos Sainz", Age = 27, Wins = 0, TeamId = 1, MotorId = 1 };
+            Driver LEC = new Driver() { Id = 7, Name = "Charles Leclerc", Age = 24, Wins = 2, TeamId = 1, MotorId = 1 };
+            Driver RIC = new Driver() { Id = 8, Name = "Daniel Ricciardo", Age = 32, Wins = 8, TeamId = 2, MotorId = 2 };
+            Driver GAS = new Driver() { Id = 9, Name = "Pierre Gasly", Age = 25, Wins = 1, TeamId = 6, MotorId = 3};
+            Driver ALO = new Driver() { Id = 10, Name = "Fernando Alonso", Age = 40, Wins = 32, TeamId = 5, MotorId =4};
+            Driver OCO = new Driver() { Id = 11, Name = "Esteban Ocon", Age = 25, Wins = 1, TeamId = 5, MotorId = 4 };
+            Driver VET = new Driver() { Id = 12, Name = "Sebastian Vettel", Age = 34, Wins = 53, TeamId = 7, MotorId = 2};
+            Driver STR = new Driver() { Id = 13, Name = "Lance Stroll", Age = 23, Wins = 0, TeamId = 7, MotorId = 2 };
+            Driver TSU = new Driver() { Id = 14, Name = "Yuki Tsunoda", Age = 21, Wins = 0, TeamId = 6, MotorId = 3 };
+            Driver RUS = new Driver() { Id = 15, Name = "George Russel", Age = 23, Wins = 0, TeamId = 8, MotorId = 2 };
+            Driver LAT = new Driver() { Id = 16, Name = "Nicholas Latifi", Age = 26, Wins = 0, TeamId = 8, MotorId = 2 };
+            Driver RAI = new Driver() { Id = 17, Name = "Kimi Raikonnen", Age = 42, Wins = 21, TeamId = 9, MotorId = 1};
+            Driver GIO = new Driver() { Id = 18, Name = "Antonio Giovinazzi", Age = 28, Wins = 0, TeamId = 9, MotorId = 1 };
+            Driver MSC = new Driver() { Id = 19, Name = "Mick Schumacher", Age = 22, Wins = 0, TeamId = 10, MotorId = 1 };
+            Driver MAZ = new Driver() { Id = 20, Name = "Nikita Mazepin", Age = 22, Wins = 0, TeamId = 10, MotorId = 1};
 
             modelBuilder.Entity<Motor>().HasData(Ferrari, Mercedes, Honda, Renault);
             modelBuilder.Entity<Team>().HasData(TeamFerrari, TeamMclaren, TeamAlfaRomeo, TeamAlphatauri, TeamAlpine, TeamAstonMartin, TeamHass, TeamMercedes, TeamRedBull, TeamWilliams);

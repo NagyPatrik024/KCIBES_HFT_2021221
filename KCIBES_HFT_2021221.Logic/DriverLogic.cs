@@ -38,6 +38,7 @@ namespace KCIBES_HFT_2021221.Logic
             var q1 = from x in teamRepo.GetAll()
                      where x.Name == teamname
                      select x.Id;
+
             var q2 = from x in driverRepo.GetAll()
                      where q1.Contains(x.TeamId)
                      select x.Name;
@@ -50,7 +51,7 @@ namespace KCIBES_HFT_2021221.Logic
             return driverRepo.GetOne(id);
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDriver()
+        public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDrivers()
         {
             return from x in driverRepo.GetAll()
                    join z in teamRepo.GetAll() on x.TeamId equals z.Id
