@@ -27,7 +27,7 @@ namespace KCIBES_HFT_2021221.Logic
             }
             else
             {
-                if (q != null)
+                if (q.Count() > 0)
                 {
                     throw new ArgumentException("Exists");
                 }
@@ -65,7 +65,7 @@ namespace KCIBES_HFT_2021221.Logic
             var q = from x in motorRepo.GetAll()
                     where x.Id == id
                     select x.Id;
-            if (q != null)
+            if (q.Count() > 0)
             {
                 return motorRepo.GetOne(id);
             }

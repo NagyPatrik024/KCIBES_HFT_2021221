@@ -32,7 +32,7 @@ namespace KCIBES_HFT_2021221.Logic
             }
             else
             {
-                if (q != null)
+                if (q.Count() > 0)
                 {
                     throw new ArgumentException("Exists!");
                 }
@@ -67,7 +67,7 @@ namespace KCIBES_HFT_2021221.Logic
             var q = from x in teamRepo.GetAll()
                     where x.Id == id
                     select x.Id;
-            if (q != null)
+            if (q.Count() > 0)
             {
                 return teamRepo.GetOne(id);
             }
@@ -107,7 +107,8 @@ namespace KCIBES_HFT_2021221.Logic
 
         public void UpdateTeam(int id, string name, int motorid, string team_chief)
         {
-            teamRepo.UpdateTeam(id, name, motorid, team_chief);
+            DeleteOne(id);
+            UpdateTeam(id, name, motorid, team_chief);
         }
 
 

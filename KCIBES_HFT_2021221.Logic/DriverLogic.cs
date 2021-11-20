@@ -20,7 +20,6 @@ namespace KCIBES_HFT_2021221.Logic
         }
         public void CreateOne(int id, string name, int age, int wins, int teamid, int motorid)
         {
-
             var q = from x in driverRepo.GetAll()
                     where x.Id == id
                     select x.Id;
@@ -30,7 +29,7 @@ namespace KCIBES_HFT_2021221.Logic
             }
             else
             {
-                if (q != null)
+                if (q.Count() > 0)
                 {
                     throw new ArgumentException("Exists!");
                 }
@@ -77,7 +76,7 @@ namespace KCIBES_HFT_2021221.Logic
             var q = from x in driverRepo.GetAll()
                     where x.Id == id
                     select x.Id;
-            if (q != null)
+            if (q.Count() > 0)
             {
                 return driverRepo.GetOne(id);
             }
@@ -97,7 +96,8 @@ namespace KCIBES_HFT_2021221.Logic
 
         public void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid)
         {
-            driverRepo.UpdateDriver(id, name, age, wins, teamid, motorid);
+            DeleteOne(id);
+            UpdateDriver(id, name, age, wins, teamid, motorid);
         }
     }
 }

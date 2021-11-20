@@ -15,9 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KCIBES_HFT_2021221.Data\KCIBES_HFT_2021221.Data.csproj" />
     <ProjectReference Include="..\KCIBES_HFT_2021221.Models\KCIBES_HFT_2021221.Models.csproj" />
-    <ProjectReference Include="..\KCIBES_HFT_2021221.Repository\KCIBES_HFT_2021221.Repository.csproj" />
   </ItemGroup>
 
 </Project>

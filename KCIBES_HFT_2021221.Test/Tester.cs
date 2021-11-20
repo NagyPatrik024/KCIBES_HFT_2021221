@@ -68,20 +68,23 @@ namespace KCIBES_HFT_2021221.Test
             Assert.That(() => dl.CreateOne(id, name, age, wins, teamid, motorid), Throws.TypeOf<ArgumentNullException>());
         }
 
-        [TestCase(11,"Ujcsapat", 4,null)]
+        [TestCase(11, "Ujcsapat", 4, null)]
         public void TeamCreateTest(int id, string name, int motorid, string team_chief)
         {
             Assert.That(() => tl.CreateOne(id, name, motorid, team_chief), Throws.TypeOf<ArgumentNullException>());
         }
+
         [TestCase(10)]
         public void DriverDeleteOneTest(int id)
         {
             Assert.That(() => dl.DeleteOne(id), Throws.TypeOf<KeyNotFoundException>());
         }
-        [TestCase(10)]
-        public void DriverGetOneTest(int id)
+
+        //TODO kell még egy
+        [TestCase(10,"Daniel Ricciardo",32,9,2,2)]
+        public void UpdateDriverTest(int id, string name, int age, int wins, int teamid, int motorid)
         {
-            Assert.That(() => dl.GetOne(id), Throws.TypeOf<KeyNotFoundException>());
+            Assert.That(() => dl.UpdateDriver(id, name, age, wins, teamid, motorid), Throws.TypeOf<KeyNotFoundException>());
         }
 
         [TestCase("Mclaren")]
