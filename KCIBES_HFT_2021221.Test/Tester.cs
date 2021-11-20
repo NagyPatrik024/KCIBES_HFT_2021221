@@ -62,7 +62,28 @@ namespace KCIBES_HFT_2021221.Test
         {
             Assert.That(() => ml.CreateOne(id, type), Throws.TypeOf<ArgumentNullException>());
         }
-        //TODO kell még 2 create
+        [TestCase(5, null, 20, 4, 2, 2)]
+        public void DriverCreateTest(int id, string name, int age, int wins, int teamid, int motorid)
+        {
+            Assert.That(() => dl.CreateOne(id, name, age, wins, teamid, motorid), Throws.TypeOf<ArgumentNullException>());
+        }
+
+        [TestCase(11,"Ujcsapat", 4,null)]
+        public void TeamCreateTest(int id, string name, int motorid, string team_chief)
+        {
+            Assert.That(() => tl.CreateOne(id, name, motorid, team_chief), Throws.TypeOf<ArgumentNullException>());
+        }
+        [TestCase(10)]
+        public void DriverDeleteOneTest(int id)
+        {
+            Assert.That(() => dl.DeleteOne(id), Throws.TypeOf<KeyNotFoundException>());
+        }
+        [TestCase(10)]
+        public void DriverGetOneTest(int id)
+        {
+            Assert.That(() => dl.GetOne(id), Throws.TypeOf<KeyNotFoundException>());
+        }
+
         [TestCase("Mclaren")]
         public void GetDriversOfaTeamTest(string teamname)
         {
@@ -94,6 +115,26 @@ namespace KCIBES_HFT_2021221.Test
                 new KeyValuePair<string, double>("Mclaren",27)
             };
             Assert.That(tl.GetTeamsAVGAge(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void GetTeamsWinsSUMTest()
+        {
+            var expected = new List<KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>("Mclaren",8)
+            };
+            Assert.That(tl.GetTeamsWinsSUM(), Is.EqualTo(expected));
+        }
+
+        [TestCase("Mercedes M11 EQ")]
+        public void GetTeamsByMotorTest(string motortype)
+        {
+            var expected = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("Mclaren","Mercedes M11 EQ")
+            };
+            Assert.That(tl.GetTeamsByMotor(motortype), Is.EqualTo(expected));
         }
 
 

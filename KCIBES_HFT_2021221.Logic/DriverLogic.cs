@@ -18,24 +18,25 @@ namespace KCIBES_HFT_2021221.Logic
             this.driverRepo = driverRepo;
             this.teamRepo = teamRepo;
         }
-        public void CreateOne(Driver driver)
+        public void CreateOne(int id, string name, int age, int wins, int teamid, int motorid)
         {
+
             var q = from x in driverRepo.GetAll()
-                    where x.Id == driver.Id
+                    where x.Id == id
                     select x.Id;
-            if (String.IsNullOrEmpty(driver.Id.ToString()) || driver.Name == null || String.IsNullOrEmpty(driver.Age.ToString()) || String.IsNullOrEmpty(driver.Wins.ToString()) || String.IsNullOrEmpty(driver.TeamId.ToString()) || String.IsNullOrEmpty(driver.MotorId.ToString()))
+            if (String.IsNullOrEmpty(id.ToString()) || name == null || String.IsNullOrEmpty(age.ToString()) || String.IsNullOrEmpty(wins.ToString()) || String.IsNullOrEmpty(teamid.ToString()) || String.IsNullOrEmpty(motorid.ToString()))
             {
-                throw new ArgumentException("Exists!");
+                throw new ArgumentNullException("Value is missing");
             }
             else
             {
-                if (q.Count() > 0)
+                if (q != null)
                 {
-                    throw new ArgumentNullException("Value is missing");
+                    throw new ArgumentException("Exists!");
                 }
                 else
                 {
-                    driverRepo.CreateOne(driver);
+                    driverRepo.CreateOne(id, name, age, wins, teamid, motorid);
                 }
             }
         }
@@ -76,7 +77,7 @@ namespace KCIBES_HFT_2021221.Logic
             var q = from x in driverRepo.GetAll()
                     where x.Id == id
                     select x.Id;
-            if (q.Count() > 0)
+            if (q != null)
             {
                 return driverRepo.GetOne(id);
             }
@@ -94,9 +95,9 @@ namespace KCIBES_HFT_2021221.Logic
                    select new KeyValuePair<string, string>(joinedItem.Name, joinedItem.Team_Chief);
         }
 
-        public void UpdateDriver(int id, Driver driver)
+        public void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid)
         {
-            driverRepo.UpdateDriver(id, driver);
+            driverRepo.UpdateDriver(id, name, age, wins, teamid, motorid);
         }
     }
 }

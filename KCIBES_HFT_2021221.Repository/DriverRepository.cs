@@ -15,15 +15,17 @@ namespace KCIBES_HFT_2021221.Repository
         {
             this.db = db;
         }
-        public void UpdateDriver(int id, Driver driver) //TODO
+        
+        public void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid)
         {
             DeleteOne(id);
-            CreateOne(driver);
+            CreateOne(id, name, age, wins, teamid, motorid);
             db.SaveChanges();
         }
 
-        public void CreateOne(Driver driver) //TODO
+        public void CreateOne(int id, string name, int age, int wins, int teamid, int motorid)
         {
+            Driver driver = new Driver() { Id = id, Name = name, Age = age, Wins = wins, TeamId = teamid, MotorId = motorid };
             db.Drivers.Add(driver);
             db.SaveChanges();
         }
@@ -49,5 +51,7 @@ namespace KCIBES_HFT_2021221.Repository
         }
 
 
+
+        
     }
 }

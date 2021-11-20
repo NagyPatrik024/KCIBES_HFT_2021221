@@ -9,8 +9,8 @@ namespace KCIBES_HFT_2021221.Repository
         IQueryable<Team> GetAll();
 
         void DeleteOne(int id);
-
-        void CreateOne(Team Team);
-        void UpdateTeam(int id, Team team);
+        //Id = 1, Name = "Ferrari", MotorId = 1, Team_Chief = "Mattia Binotto" 
+        void CreateOne(int id, string name, int motorid, string team_chief);
+        void UpdateTeam(int id, string name, int motorid, string team_chief);
     }
 }

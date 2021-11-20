@@ -13,8 +13,8 @@ namespace KCIBES_HFT_2021221.Logic
         IEnumerable<Team> GetAll();
         void DeleteOne(int id);
 
-        void CreateOne(Team team);
-        void UpdateTeam(int id, Team team);
+        void CreateOne(int id, string name, int motorid, string team_chief);
+        void UpdateTeam(int id, string name, int motorid, string team_chief);
 
         IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motorname);
 

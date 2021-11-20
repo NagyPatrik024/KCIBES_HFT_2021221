@@ -12,8 +12,8 @@ namespace KCIBES_HFT_2021221.Logic
         Driver GetOne(int id);
         IEnumerable<Driver> GetAll();
         void DeleteOne(int id);
-        void CreateOne(Driver driver);
-        void UpdateDriver(int id, Driver driver);
+        void CreateOne(int id, string name, int age, int wins, int teamid, int motorid);
+        void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid);
         IEnumerable<string> GetDriversOfaTeam(string teamname);
 
         IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDrivers(); 

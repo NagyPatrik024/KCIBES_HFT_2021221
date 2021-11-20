@@ -9,9 +9,9 @@ namespace KCIBES_HFT_2021221.Repository
         IQueryable<Driver> GetAll();
 
         void DeleteOne(int id);
-
-        void CreateOne(Driver driver);
-        void UpdateDriver(int id, Driver driver); 
+        //Id = 1, Name = "Max Verstappen", Age = 24, Wins = 17, TeamId = 3, MotorId = 3 
+        void CreateOne(int id, string name, int age, int wins, int teamid, int motorid);
+        void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid); 
         
 
     }

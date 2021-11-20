@@ -16,21 +16,20 @@ namespace KCIBES_HFT_2021221.Repository
         {
             this.db = db;
         }
-        public void UpdateTeam(int id, Team team) //TODO
-        {
-            Team team_ = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
-            DeleteOne(id);
-            CreateOne(team);
-            db.SaveChanges();
 
+        public void UpdateTeam(int id, string name, int motorid, string team_chief)
+        {
+            DeleteOne(id);
+            CreateOne(id, name, motorid, team_chief);
+            db.SaveChanges();
         }
 
-        public void CreateOne(Team team) //TODO
+        public void CreateOne(int id, string name, int motorid, string team_chief)
         {
+            Team team = new Team() { Id = id, Name = name, MotorId = motorid, Team_Chief = team_chief };
             db.Teams.Add(team);
             db.SaveChanges();
         }
-
         public void DeleteOne(int id)
         {
             Team team = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
@@ -50,5 +49,9 @@ namespace KCIBES_HFT_2021221.Repository
         {
             return db.Teams;
         }
+
+
+
+
     }
 }
