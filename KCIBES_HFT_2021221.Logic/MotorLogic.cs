@@ -18,12 +18,41 @@ namespace KCIBES_HFT_2021221.Logic
 
         public void CreateOne(Motor motor)
         {
-            motorRepo.CreateOne(motor);
+            var q = from x in motorRepo.GetAll()
+                    where x.Id == motor.Id
+                    select x.Id;
+            if (q.Count() > 0)
+            {
+                throw new ArgumentException("Exists!");
+            }
+            else
+            {
+                if (motor.Type == null || String.IsNullOrEmpty(motor.Id.ToString()))
+                {
+                    throw new Exception("Value is missing");
+                }
+                else
+                {
+                    motorRepo.CreateOne(motor);
+                }
+
+            }
+
         }
 
         public void DeleteOne(int id)
         {
-            motorRepo.DeleteOne(id);
+
+            try
+            {
+                GetOne(id);
+                motorRepo.DeleteOne(id);
+            }
+            catch (Exception)
+            {
+                throw new KeyNotFoundException();
+            }
+
         }
 
         public IEnumerable<Motor> GetAll()
@@ -33,7 +62,17 @@ namespace KCIBES_HFT_2021221.Logic
 
         public Motor GetOne(int id)
         {
-            return motorRepo.GetOne(id);
+            var q = from x in motorRepo.GetAll()
+                    where x.Id == id
+                    select x.Id;
+            if (q.Count() > 0)
+            {
+                return motorRepo.GetOne(id);
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
         }
 
         public void UpdateMotor(int id, Motor motor)

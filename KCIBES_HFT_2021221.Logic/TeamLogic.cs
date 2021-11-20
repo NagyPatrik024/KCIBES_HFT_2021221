@@ -23,12 +23,38 @@ namespace KCIBES_HFT_2021221.Logic
 
         public void CreateOne(Team team)
         {
-            teamRepo.CreateOne(team);
+            var q = from x in motorRepo.GetAll()
+                    where x.Id == team.Id
+                    select x.Id;
+            if (q.Count() > 0)
+            {
+                throw new ArgumentException("Exists!");
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(team.Id.ToString()) || team.Name == null || String.IsNullOrEmpty(team.MotorId.ToString()) || team.Team_Chief == null)
+                {
+                    throw new Exception("Value is missing");
+                }
+                else
+                {
+                    teamRepo.CreateOne(team);
+                }
+            }
+
         }
 
         public void DeleteOne(int id)
         {
-            teamRepo.DeleteOne(id);
+            try
+            {
+                GetOne(id);
+                teamRepo.DeleteOne(id);
+            }
+            catch (Exception)
+            {
+                throw new KeyNotFoundException();
+            }
         }
 
         public IEnumerable<Team> GetAll()
@@ -38,7 +64,18 @@ namespace KCIBES_HFT_2021221.Logic
 
         public Team GetOne(int id)
         {
-            return teamRepo.GetOne(id);
+            var q = from x in teamRepo.GetAll()
+                    where x.Id == id
+                    select x.Id;
+            if (q.Count() > 0)
+            {
+                return teamRepo.GetOne(id);
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
+
         }
 
         public IEnumerable<KeyValuePair<string, double>> GetTeamsAVGAge()

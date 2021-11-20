@@ -20,12 +20,37 @@ namespace KCIBES_HFT_2021221.Logic
         }
         public void CreateOne(Driver driver)
         {
-            driverRepo.CreateOne(driver);
+            var q = from x in driverRepo.GetAll()
+                    where x.Id == driver.Id
+                    select x.Id;
+            if (q.Count() > 0)
+            {
+                throw new ArgumentException("Exists!");
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(driver.Id.ToString()) || driver.Name == null || String.IsNullOrEmpty(driver.Age.ToString()) || String.IsNullOrEmpty(driver.Wins.ToString()) || String.IsNullOrEmpty(driver.TeamId.ToString()) || String.IsNullOrEmpty(driver.MotorId.ToString()))
+                {
+                    throw new Exception("Value is missing");
+                }
+                else
+                {
+                    driverRepo.CreateOne(driver);
+                }
+            }
         }
 
         public void DeleteOne(int id)
         {
-            driverRepo.DeleteOne(id);
+            try
+            {
+                GetOne(id);
+                driverRepo.DeleteOne(id);
+            }
+            catch (Exception)
+            {
+                throw new KeyNotFoundException();
+            }
         }
 
         public IEnumerable<Driver> GetAll()
@@ -48,7 +73,17 @@ namespace KCIBES_HFT_2021221.Logic
 
         public Driver GetOne(int id)
         {
-            return driverRepo.GetOne(id);
+            var q = from x in driverRepo.GetAll()
+                    where x.Id == id
+                    select x.Id;
+            if (q.Count() > 0)
+            {
+                return driverRepo.GetOne(id);
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDrivers()
