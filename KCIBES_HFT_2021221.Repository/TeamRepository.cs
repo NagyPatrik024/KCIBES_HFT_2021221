@@ -12,11 +12,11 @@ namespace KCIBES_HFT_2021221.Repository
     {
 
         F1DbContext db;
-        public TeamRepository(F1DbContext db) 
+        public TeamRepository(F1DbContext db)
         {
             this.db = db;
         }
-        public void UpdateTeam(int id, Team team)
+        public void UpdateTeam(int id, Team team) //TODO
         {
             Team team_ = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
             DeleteOne(id);
@@ -25,7 +25,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         }
 
-        public void CreateOne(Team team)
+        public void CreateOne(Team team) //TODO
         {
             db.Teams.Add(team);
             db.SaveChanges();
@@ -34,29 +34,16 @@ namespace KCIBES_HFT_2021221.Repository
         public void DeleteOne(int id)
         {
             Team team = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
-            if (team != null)
-            {
-                db.Teams.Remove(team);
-                db.SaveChanges();
-            }
-            else
-            {
-                throw new Exception(); // TODO 
-            }
-
+            db.Teams.Remove(team);
+            db.SaveChanges();
         }
 
         public Team GetOne(int id)
         {
             Team team = db.Teams.FirstOrDefault<Team>(x => x.Id == id);
-            if (team != null)
-            {
-                return team;
-            }
-            else
-            {
-                throw new Exception(); // TODO 
-            }
+
+            return team;
+
         }
 
         public IQueryable<Team> GetAll()

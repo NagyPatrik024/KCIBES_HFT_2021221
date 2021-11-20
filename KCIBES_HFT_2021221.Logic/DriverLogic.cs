@@ -23,15 +23,15 @@ namespace KCIBES_HFT_2021221.Logic
             var q = from x in driverRepo.GetAll()
                     where x.Id == driver.Id
                     select x.Id;
-            if (q.Count() > 0)
+            if (String.IsNullOrEmpty(driver.Id.ToString()) || driver.Name == null || String.IsNullOrEmpty(driver.Age.ToString()) || String.IsNullOrEmpty(driver.Wins.ToString()) || String.IsNullOrEmpty(driver.TeamId.ToString()) || String.IsNullOrEmpty(driver.MotorId.ToString()))
             {
                 throw new ArgumentException("Exists!");
             }
             else
             {
-                if (String.IsNullOrEmpty(driver.Id.ToString()) || driver.Name == null || String.IsNullOrEmpty(driver.Age.ToString()) || String.IsNullOrEmpty(driver.Wins.ToString()) || String.IsNullOrEmpty(driver.TeamId.ToString()) || String.IsNullOrEmpty(driver.MotorId.ToString()))
+                if (q.Count() > 0)
                 {
-                    throw new Exception("Value is missing");
+                    throw new ArgumentNullException("Value is missing");
                 }
                 else
                 {

@@ -15,16 +15,17 @@ namespace KCIBES_HFT_2021221.Repository
         {
             this.db = db;
         }
-        public void UpdateMotor(int id, Motor motor)
+        public void UpdateMotor(int id, string type)
         {
-            Motor motor_ = db.Motors.FirstOrDefault(x => x.Id == id);
             DeleteOne(id);
-            CreateOne(motor);
+            CreateOne(id, type);
             db.SaveChanges();
         }
 
-        public void CreateOne(Motor motor)
+
+        public void CreateOne(int id, string type)
         {
+            Motor motor = new Motor() { Id = id, Type = type };
             db.Motors.Add(motor);
             db.SaveChanges();
         }
@@ -32,33 +33,24 @@ namespace KCIBES_HFT_2021221.Repository
         public void DeleteOne(int id)
         {
             Motor motor = db.Motors.FirstOrDefault(x => x.Id == id);
-            if (motor != null)
-            {
-                db.Motors.Remove(motor);
-                db.SaveChanges();
-            }
-            else
-            {
-                throw new Exception();
-            }
+
+            db.Motors.Remove(motor);
+            db.SaveChanges();
+
         }
 
         public Motor GetOne(int id)
         {
             Motor motor = db.Motors.FirstOrDefault(x => x.Id == id);
-            if (motor != null)
-            {
-                return motor;
-            }
-            else
-            {
-                throw new Exception();
-            }
+            return motor;
+
         }
 
         public IQueryable<Motor> GetAll()
         {
             return db.Motors;
         }
+
+
     }
 }

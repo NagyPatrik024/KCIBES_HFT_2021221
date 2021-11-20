@@ -26,13 +26,13 @@ namespace KCIBES_HFT_2021221.Logic
             var q = from x in motorRepo.GetAll()
                     where x.Id == team.Id
                     select x.Id;
-            if (q.Count() > 0)
+            if (String.IsNullOrEmpty(team.Id.ToString()) || team.Name == null || String.IsNullOrEmpty(team.MotorId.ToString()) || team.Team_Chief == null)
             {
                 throw new ArgumentException("Exists!");
             }
             else
             {
-                if (String.IsNullOrEmpty(team.Id.ToString()) || team.Name == null || String.IsNullOrEmpty(team.MotorId.ToString()) || team.Team_Chief == null)
+                if (q.Count() > 0)
                 {
                     throw new Exception("Value is missing");
                 }

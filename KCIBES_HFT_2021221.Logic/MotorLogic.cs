@@ -16,24 +16,24 @@ namespace KCIBES_HFT_2021221.Logic
             this.motorRepo = motorRepo;
         }
 
-        public void CreateOne(Motor motor)
+        public void CreateOne(int id, string type)
         {
             var q = from x in motorRepo.GetAll()
-                    where x.Id == motor.Id
+                    where x.Id == id
                     select x.Id;
-            if (q.Count() > 0)
+            if (type == null || String.IsNullOrEmpty(id.ToString()))
             {
-                throw new ArgumentException("Exists!");
+                throw new ArgumentNullException("Value is missing");
             }
             else
             {
-                if (motor.Type == null || String.IsNullOrEmpty(motor.Id.ToString()))
+                if (q.Count() > 0)
                 {
-                    throw new Exception("Value is missing");
+                    throw new ArgumentException("Exists");
                 }
                 else
                 {
-                    motorRepo.CreateOne(motor);
+                    motorRepo.CreateOne(id, type);
                 }
 
             }
@@ -75,9 +75,10 @@ namespace KCIBES_HFT_2021221.Logic
             }
         }
 
-        public void UpdateMotor(int id, Motor motor)
+        public void UpdateMotor(int id, string type)
         {
-            motorRepo.UpdateMotor(id, motor);
+            DeleteOne(id);
+            CreateOne(id, type);
         }
     }
 }

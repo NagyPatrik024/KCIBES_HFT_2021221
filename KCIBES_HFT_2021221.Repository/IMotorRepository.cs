@@ -10,7 +10,7 @@ namespace KCIBES_HFT_2021221.Repository
 
         void DeleteOne(int id);
 
-        void CreateOne(Motor motor);
-        void UpdateMotor(int id, Motor motor);
+        void CreateOne(int id, string Type);
+        void UpdateMotor(int id, string type);
     }
 }

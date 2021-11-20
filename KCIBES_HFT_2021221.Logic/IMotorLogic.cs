@@ -13,9 +13,9 @@ namespace KCIBES_HFT_2021221.Logic
         IEnumerable<Motor> GetAll();
         void DeleteOne(int id);
 
-        void CreateOne(Motor motor);
-        void UpdateMotor(int id, Motor motor);
+        void CreateOne(int id, string type);
+        void UpdateMotor(int id, string type);
 
-        
+
     }
 }
