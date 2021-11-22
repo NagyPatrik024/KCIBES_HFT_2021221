@@ -23,8 +23,9 @@ namespace KCIBES_HFT_2021221.Test
             var mockTeamRepository = new Mock<ITeamRepository>();
             var mockMotorRepository = new Mock<IMotorRepository>();
 
-            Team fakeTeam = new Team() { Id = 2, Name = "Mclaren", MotorId = 2, Team_Chief = "Andreas Seidl" };
+            
             Motor fakeMotor = new Motor() { Id = 2, Type = "Mercedes M11 EQ" };
+            Team fakeTeam = new Team() { Id = 2, Name = "Mclaren", MotorId = 2, Team_Chief = "Andreas Seidl", Motor = fakeMotor };
             var drivers = new List<Driver>()
             {
              new Driver() {
@@ -47,11 +48,23 @@ namespace KCIBES_HFT_2021221.Test
                  Motor = fakeMotor}
             }.AsQueryable();
 
+
             var teamlist = new List<Team> { fakeTeam }.AsQueryable();
             var motorlist = new List<Motor> { fakeMotor }.AsQueryable();
             mockDriverRepository.Setup((t) => t.GetAll()).Returns(drivers);
+            mockDriverRepository.Setup(x => x.GetOne(It.IsAny<int>())).Returns(
+             new Driver()
+             {
+                 Id = 8,
+                 Name = "Daniel Ricciardo",
+                 Age = 32,
+                 Wins = 8,
+                 TeamId = 2,
+                 MotorId = 2
+             });
             mockTeamRepository.Setup((t) => t.GetAll()).Returns(teamlist);
             mockMotorRepository.Setup((t) => t.GetAll()).Returns(motorlist);
+
             dl = new DriverLogic(mockDriverRepository.Object, mockTeamRepository.Object);
             tl = new TeamLogic(mockTeamRepository.Object, mockDriverRepository.Object, mockMotorRepository.Object);
             ml = new MotorLogic(mockMotorRepository.Object);
@@ -74,14 +87,19 @@ namespace KCIBES_HFT_2021221.Test
             Assert.That(() => tl.CreateOne(id, name, motorid, team_chief), Throws.TypeOf<ArgumentNullException>());
         }
 
+        [TestCase(8)]
+        public void GetOneDriverTest(int id)
+        {
+            Assert.That(dl.GetOne(id).Name, Is.EqualTo("Daniel Ricciardo"));
+        }
+
         [TestCase(10)]
         public void DriverDeleteOneTest(int id)
         {
             Assert.That(() => dl.DeleteOne(id), Throws.TypeOf<KeyNotFoundException>());
         }
 
-        //TODO kell még egy
-        [TestCase(10,"Daniel Ricciardo",32,9,2,2)]
+        [TestCase(10, "Daniel Ricciardo", 32, 9, 2, 2)]
         public void UpdateDriverTest(int id, string name, int age, int wins, int teamid, int motorid)
         {
             Assert.That(() => dl.UpdateDriver(id, name, age, wins, teamid, motorid), Throws.TypeOf<KeyNotFoundException>());

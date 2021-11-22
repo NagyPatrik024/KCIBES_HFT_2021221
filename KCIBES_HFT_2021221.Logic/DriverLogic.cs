@@ -88,10 +88,14 @@ namespace KCIBES_HFT_2021221.Logic
 
         public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDrivers()
         {
+
             return from x in driverRepo.GetAll()
-                   join z in teamRepo.GetAll() on x.TeamId equals z.Id
-                   let joinedItem = new { x.Name, z.Team_Chief }
-                   select new KeyValuePair<string, string>(joinedItem.Name, joinedItem.Team_Chief);
+                   select new KeyValuePair<string, string>(x.Name, x.Team.Team_Chief);
+
+            //return from x in driverRepo.GetAll()
+            //       join z in teamRepo.GetAll() on x.TeamId equals z.Id
+            //       let joinedItem = new { x.Name, z.Team_Chief }
+            //       select new KeyValuePair<string, string>(joinedItem.Name, joinedItem.Team_Chief);
         }
 
         public void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid)

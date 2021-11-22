@@ -80,28 +80,41 @@ namespace KCIBES_HFT_2021221.Logic
 
         public IEnumerable<KeyValuePair<string, double>> GetTeamsAVGAge()
         {
-            return from x in teamRepo.GetAll()
-                   join z in driverRepo.GetAll() on x.Id equals z.TeamId
-                   let joinedItem = new { x.Name, z.Age }
-                   group joinedItem by joinedItem.Name into grp
-                   select new KeyValuePair<string, double>(grp.Key, grp.Average(x => x.Age));
+            return from x in driverRepo.GetAll()
+                   group x by x.Team.Name into g
+                   select new KeyValuePair<string, double>(g.Key, g.Average(x => x.Age));
+
+            //return from x in teamRepo.GetAll()
+            //       join z in driverRepo.GetAll() on x.Id equals z.TeamId
+            //       let joinedItem = new { x.Name, z.Age }
+            //       group joinedItem by joinedItem.Name into grp
+            //       select new KeyValuePair<string, double>(grp.Key, grp.Average(x => x.Age));
         }
 
         public IEnumerable<KeyValuePair<string, double>> GetTeamsWinsSUM()
         {
-            return from x in teamRepo.GetAll()
-                   join z in driverRepo.GetAll() on x.Id equals z.TeamId
-                   let joinedItem = new { x.Name, z.Wins }
-                   group joinedItem by joinedItem.Name into grp
-                   select new KeyValuePair<string, double>(grp.Key, grp.Sum(x => x.Wins));
+            return from x in driverRepo.GetAll()
+                   group x by x.Team.Name into g
+                   select new KeyValuePair<string, double>(g.Key, g.Sum(x => x.Wins));
+
+            //return from x in teamRepo.GetAll()
+            //       join z in driverRepo.GetAll() on x.Id equals z.TeamId
+            //       let joinedItem = new { x.Name, z.Wins }
+            //       group joinedItem by joinedItem.Name into grp
+            //       select new KeyValuePair<string, double>(grp.Key, grp.Sum(x => x.Wins));
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motorname)
+        public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motortype)
         {
             return from x in teamRepo.GetAll()
-                   join z in motorRepo.GetAll() on x.MotorId equals z.Id
-                   let joinedItem = new { x.Name, z.Type }
-                   select new KeyValuePair<string, string>(joinedItem.Name, joinedItem.Type);
+                   where x.Motor.Type == motortype
+                   select new KeyValuePair<string, string>(x.Name, x.Motor.Type);
+
+            //return from x in teamRepo.GetAll()
+            //       join z in motorRepo.GetAll() on x.MotorId equals z.Id
+            //       let joinedItem = new { x.Name, z.Type }
+            //       where z.Type == motortype
+            //       select new KeyValuePair<string, string>(joinedItem.Name, joinedItem.Type);
         }
 
 
