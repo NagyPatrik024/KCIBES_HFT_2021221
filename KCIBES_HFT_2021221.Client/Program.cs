@@ -1,5 +1,8 @@
 ﻿
+using KCIBES_HFT_2021221.Client;
+using KCIBES_HFT_2021221.Models;
 using System;
+using System.Collections.Generic;
 
 namespace KCIBES_HFT_2021221.Client
 {
@@ -7,28 +10,34 @@ namespace KCIBES_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            /*F1DbContext ctx = new F1DbContext();
+            System.Threading.Thread.Sleep(8000);
 
-            DriverRepository drepo = new DriverRepository(ctx);
-            TeamRepository trepo = new TeamRepository(ctx);
-            MotorRepository mrepo = new MotorRepository(ctx);
-
-            DriverLogic dl = new DriverLogic(drepo, trepo);
+            RestService rest = new RestService("http://localhost:17873");
 
 
-            var q1 = dl.GetOne(8);
-            foreach (var item in drepo.GetAll())
+            rest.Post<Motor>(new Motor()
             {
-                Console.WriteLine(item.Name);
-            }
-            drepo.DeleteOne(1);
+                Type = "RedBull engine"
+            }, "motor");
 
-            Console.WriteLine("---------------");
+            var motors = rest.Get<Motor>("motor");
+            //public IEnumerable<string> GetDriversOfaTeam(string teamname)
+            //    public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDrivers()
+            //    public IEnumerable<KeyValuePair<string, double>> GetTeamsAVGAge()
+            //    public IEnumerable<KeyValuePair<string, double>> GetTeamsWinsSUM()
+            //  public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motortype)
 
-            foreach (var item in drepo.GetAll())
-            {
-                Console.WriteLine(item.Name);
-            }*/
+            var teamsavgage = rest.Get<KeyValuePair<string, double>>("stat/GetTeamsAVGAge");
+
+            var teamswinssum = rest.Get<KeyValuePair<string, double>>("stat/GetTeamsWinsSUM");
+
+            var teamchiefbydriver = rest.Get<KeyValuePair<string, string>>("stat/GetTeamChiefByDrivers");
+
+            var driversofateam = rest.Get<string>("stat/GetDriversOfaTeam?teamname=Mclaren");
+
+            var teamsbymotor = rest.Get<KeyValuePair<string, string>>("stat/GetTeamsByMotor?motortype=Mercedes M11 EQ");
+            ;
+
         }
     }
 }

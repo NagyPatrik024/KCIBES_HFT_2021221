@@ -1,3 +1,6 @@
+using KCIBES_HFT_2021221.Data;
+using KCIBES_HFT_2021221.Logic;
+using KCIBES_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,13 +15,20 @@ namespace KCIBES_HFT_2021221.Endpoint
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
+            services.AddTransient<IDriverLogic, DriverLogic>();
+            services.AddTransient<ITeamLogic, TeamLogic>();
+            services.AddTransient<IMotorLogic, MotorLogic>();
+            services.AddTransient<IDriverRepository, DriverRepository>();
+            services.AddTransient<ITeamRepository, TeamRepository>();
+            services.AddTransient<IMotorRepository, MotorRepository>();
+            services.AddTransient<F1DbContext, F1DbContext>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -30,10 +40,7 @@ namespace KCIBES_HFT_2021221.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

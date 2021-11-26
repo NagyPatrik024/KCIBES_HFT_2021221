@@ -60,15 +60,9 @@ namespace KCIBES_HFT_2021221.Logic
 
         public IEnumerable<string> GetDriversOfaTeam(string teamname)
         {
-            var q1 = from x in teamRepo.GetAll()
-                     where x.Name == teamname
-                     select x.Id;
-
-            var q2 = from x in driverRepo.GetAll()
-                     where q1.Contains(x.TeamId)
-                     select x.Name;
-
-            return q2.ToList();
+            return from x in driverRepo.GetAll()
+                   where x.Team.Name == teamname
+                   select x.Name;
         }
 
         public Driver GetOne(int id)
