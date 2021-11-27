@@ -77,8 +77,24 @@ namespace KCIBES_HFT_2021221.Logic
 
         public void UpdateMotor(int id, string type)
         {
-            DeleteOne(id);
-            CreateOne(id, type);
+            if (type == null || String.IsNullOrEmpty(id.ToString()))
+            {
+                throw new ArgumentNullException("Value is missing");
+            }
+            else
+            {
+
+                try
+                {
+                    GetOne(id);
+                    motorRepo.UpdateMotor(id, type);
+                }
+                catch (Exception)
+                {
+                    throw new KeyNotFoundException();
+                }
+
+            }
         }
     }
 }

@@ -19,8 +19,10 @@ namespace KCIBES_HFT_2021221.Repository
 
         public void UpdateTeam(int id, string name, int motorid, string team_chief)
         {
-            DeleteOne(id);
-            CreateOne(id, name, motorid, team_chief);
+            var update = GetOne(id);
+            update.Name = name;
+            update.MotorId = motorid;
+            update.Team_Chief = team_chief;
             db.SaveChanges();
         }
 

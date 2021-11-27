@@ -17,8 +17,8 @@ namespace KCIBES_HFT_2021221.Repository
         }
         public void UpdateMotor(int id, string type)
         {
-            DeleteOne(id);
-            CreateOne(id, type);
+            var update = GetOne(id);
+            update.Type = type;
             db.SaveChanges();
         }
 

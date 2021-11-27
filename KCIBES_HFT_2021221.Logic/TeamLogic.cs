@@ -120,10 +120,23 @@ namespace KCIBES_HFT_2021221.Logic
 
         public void UpdateTeam(int id, string name, int motorid, string team_chief)
         {
-            DeleteOne(id);
-            UpdateTeam(id, name, motorid, team_chief);
+            if (String.IsNullOrEmpty(id.ToString()) || name == null || String.IsNullOrEmpty(motorid.ToString()) || team_chief == null)
+            {
+                throw new ArgumentNullException("Value is missing");
+            }
+            else
+            {
+                try
+                {
+                    GetOne(id);
+                    teamRepo.UpdateTeam(id, name, motorid, team_chief);
+                }
+                catch (Exception)
+                {
+                    throw new KeyNotFoundException();
+                }
+
+            }
         }
-
-
     }
 }

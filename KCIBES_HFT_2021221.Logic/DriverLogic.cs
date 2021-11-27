@@ -94,8 +94,22 @@ namespace KCIBES_HFT_2021221.Logic
 
         public void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid)
         {
-            DeleteOne(id);
-            UpdateDriver(id, name, age, wins, teamid, motorid);
+            if (String.IsNullOrEmpty(id.ToString()) || name == null || String.IsNullOrEmpty(age.ToString()) || String.IsNullOrEmpty(wins.ToString()) || String.IsNullOrEmpty(teamid.ToString()) || String.IsNullOrEmpty(motorid.ToString()))
+            {
+                throw new ArgumentNullException("Value is missing");
+            }
+            else
+            {
+                try
+                {
+                    GetOne(id);
+                    driverRepo.UpdateDriver(id, name, age, wins, teamid, motorid);
+                }
+                catch (Exception)
+                {
+                    throw new KeyNotFoundException();
+                }
+            }
         }
     }
 }

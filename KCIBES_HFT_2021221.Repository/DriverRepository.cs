@@ -15,11 +15,15 @@ namespace KCIBES_HFT_2021221.Repository
         {
             this.db = db;
         }
-        
+
         public void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid)
         {
-            DeleteOne(id);
-            CreateOne(id, name, age, wins, teamid, motorid);
+            var update = GetOne(id);
+            update.Name = name;
+            update.Age = age;
+            update.Wins = wins;
+            update.TeamId = teamid;
+            update.MotorId = motorid;
             db.SaveChanges();
         }
 
@@ -52,6 +56,6 @@ namespace KCIBES_HFT_2021221.Repository
 
 
 
-        
+
     }
 }
