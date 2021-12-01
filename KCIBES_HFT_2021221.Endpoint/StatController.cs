@@ -27,8 +27,9 @@ namespace KCIBES_HFT_2021221.Endpoint
         //    public IEnumerable<KeyValuePair<string, double>> GetTeamsWinsSUM()
         //  public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motortype)
 
-        // GET: stat/GetDriversOfaTeam
+        // GET: stat/GetDriversOfaTeam/teamname
         [HttpGet]
+        [HttpGet("{teamname}")]
         public IEnumerable<string> GetDriversOfaTeam(string teamname)
         {
             return dl.GetDriversOfaTeam(teamname);
@@ -55,8 +56,9 @@ namespace KCIBES_HFT_2021221.Endpoint
             return tl.GetTeamsWinsSUM();
         }
 
-        // GET: stat/GetTeamsByMotor
+        // GET: stat/GetTeamsByMotor/motortype
         [HttpGet]
+        [HttpGet("{motortype}")]
         public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motortype)
         {
             return tl.GetTeamsByMotor(motortype);
