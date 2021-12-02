@@ -11,7 +11,6 @@ namespace KCIBES_HFT_2021221.Client
         static void Main(string[] args)
         {
             System.Threading.Thread.Sleep(8000);
-            RestService rest = new RestService("http://localhost:17873");
 
             bool menu = true;
             while (menu)
@@ -391,9 +390,6 @@ namespace KCIBES_HFT_2021221.Client
             }
 
         }
-
-
-
 
     }
 }

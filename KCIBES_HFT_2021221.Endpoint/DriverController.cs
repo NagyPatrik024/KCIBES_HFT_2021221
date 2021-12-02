@@ -20,35 +20,35 @@ namespace KCIBES_HFT_2021221.Endpoint
             this.dl = dl;
         }
 
-        // GET: /brand
+        // GET: /driver
         [HttpGet]
         public IEnumerable<Driver> Get()
         {
             return dl.GetAll();
         }
 
-        // GET /brand/5
+        // GET /driver/5
         [HttpGet("{id}")]
         public Driver Get(int id)
         {
             return dl.GetOne(id);
         }
 
-        // POST /brand
+        // POST /driver
         [HttpPost]
         public void Post([FromBody] Driver driver)
         {
             dl.CreateOne(driver.Id, driver.Name, driver.Age, driver.Wins, driver.TeamId, driver.MotorId);
         }
 
-        // PUT /brand
+        // PUT /driver
         [HttpPut]
         public void Put([FromBody] Driver driver)
         {
             dl.UpdateDriver(driver.Id, driver.Name, driver.Age, driver.Wins, driver.TeamId, driver.MotorId);
         }
 
-        // DELETE /brand/5
+        // DELETE /driver/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

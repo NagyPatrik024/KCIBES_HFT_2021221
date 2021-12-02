@@ -12,18 +12,16 @@ namespace KCIBES_HFT_2021221.Logic
     {
         ITeamRepository teamRepo;
         IDriverRepository driverRepo;
-        IMotorRepository motorRepo;
 
-        public TeamLogic(ITeamRepository teamRepo, IDriverRepository driverRepo, IMotorRepository motorRepo)
+        public TeamLogic(ITeamRepository teamRepo, IDriverRepository driverRepo)
         {
             this.teamRepo = teamRepo;
             this.driverRepo = driverRepo;
-            this.motorRepo = motorRepo;
         }
 
         public void CreateOne(int id, string name, int motorid, string team_chief)
         {
-            var q = from x in motorRepo.GetAll()
+            var q = from x in teamRepo.GetAll()
                     where x.Id == id
                     select x.Id;
             if (String.IsNullOrEmpty(id.ToString()) || name == null || String.IsNullOrEmpty(motorid.ToString()) || team_chief == null)

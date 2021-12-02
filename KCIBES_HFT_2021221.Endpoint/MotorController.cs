@@ -21,35 +21,35 @@ namespace KCIBES_HFT_2021221.Endpoint
             this.ml = ml;
         }
 
-        // GET: /brand
+        // GET: /motor
         [HttpGet]
         public IEnumerable<Motor> Get()
         {
             return ml.GetAll();
         }
 
-        // GET /brand/5
+        // GET /motor/5
         [HttpGet("{id}")]
         public Motor Get(int id)
         {
             return ml.GetOne(id);
         }
 
-        // POST /brand
+        // POST /motor
         [HttpPost]
         public void Post([FromBody] Motor motor)
         {
             ml.CreateOne(motor.Id, motor.Type);
         }
 
-        // PUT /brand
+        // PUT /motor
         [HttpPut]
         public void Put([FromBody] Motor motor)
         {
             ml.UpdateMotor(motor.Id, motor.Type);
         }
 
-        // DELETE /brand/5
+        // DELETE /motor/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

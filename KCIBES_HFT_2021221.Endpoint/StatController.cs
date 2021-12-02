@@ -22,10 +22,10 @@ namespace KCIBES_HFT_2021221.Endpoint
         }
 
         //public IEnumerable<string> GetDriversOfaTeam(string teamname)
-        //    public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDrivers()
-        //    public IEnumerable<KeyValuePair<string, double>> GetTeamsAVGAge()
-        //    public IEnumerable<KeyValuePair<string, double>> GetTeamsWinsSUM()
-        //  public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motortype)
+        //public IEnumerable<KeyValuePair<string, string>> GetTeamChiefByDrivers()
+        //public IEnumerable<KeyValuePair<string, double>> GetTeamsAVGAge()
+        //public IEnumerable<KeyValuePair<string, double>> GetTeamsWinsSUM()
+        //public IEnumerable<KeyValuePair<string, string>> GetTeamsByMotor(string motortype)
 
         // GET: stat/GetDriversOfaTeam/teamname
         [HttpGet]

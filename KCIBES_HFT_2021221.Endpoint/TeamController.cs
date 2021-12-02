@@ -20,35 +20,35 @@ namespace KCIBES_HFT_2021221.Endpoint
             this.tl = tl;
         }
 
-        // GET: /brand
+        // GET: /team
         [HttpGet]
         public IEnumerable<Team> Get()
         {
             return tl.GetAll();
         }
 
-        // GET /brand/5
+        // GET /team/5
         [HttpGet("{id}")]
         public Team Get(int id)
         {
             return tl.GetOne(id);
         }
 
-        // POST /brand
+        // POST /team
         [HttpPost]
         public void Post([FromBody] Team team)
         {
             tl.CreateOne(team.Id, team.Name, team.MotorId, team.Team_Chief);
         }
 
-        // PUT /brand
+        // PUT /team
         [HttpPut]
         public void Put([FromBody] Team team)
         {
             tl.UpdateTeam(team.Id, team.Name, team.MotorId, team.Team_Chief);
         }
 
-        // DELETE /brand/5
+        // DELETE /team/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

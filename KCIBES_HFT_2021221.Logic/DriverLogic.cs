@@ -11,12 +11,10 @@ namespace KCIBES_HFT_2021221.Logic
     public class DriverLogic : IDriverLogic
     {
         IDriverRepository driverRepo;
-        ITeamRepository teamRepo;
 
-        public DriverLogic(IDriverRepository driverRepo, ITeamRepository teamRepo)
+        public DriverLogic(IDriverRepository driverRepo)
         {
             this.driverRepo = driverRepo;
-            this.teamRepo = teamRepo;
         }
         public void CreateOne(int id, string name, int age, int wins, int teamid, int motorid)
         {
@@ -85,11 +83,6 @@ namespace KCIBES_HFT_2021221.Logic
 
             return from x in driverRepo.GetAll()
                    select new KeyValuePair<string, string>(x.Name, x.Team.Team_Chief);
-
-            //return from x in driverRepo.GetAll()
-            //       join z in teamRepo.GetAll() on x.TeamId equals z.Id
-            //       let joinedItem = new { x.Name, z.Team_Chief }
-            //       select new KeyValuePair<string, string>(joinedItem.Name, joinedItem.Team_Chief);
         }
 
         public void UpdateDriver(int id, string name, int age, int wins, int teamid, int motorid)

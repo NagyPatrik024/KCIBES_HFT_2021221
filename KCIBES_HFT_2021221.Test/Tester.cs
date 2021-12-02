@@ -65,8 +65,8 @@ namespace KCIBES_HFT_2021221.Test
             mockTeamRepository.Setup((t) => t.GetAll()).Returns(teamlist);
             mockMotorRepository.Setup((t) => t.GetAll()).Returns(motorlist);
 
-            dl = new DriverLogic(mockDriverRepository.Object, mockTeamRepository.Object);
-            tl = new TeamLogic(mockTeamRepository.Object, mockDriverRepository.Object, mockMotorRepository.Object);
+            dl = new DriverLogic(mockDriverRepository.Object);
+            tl = new TeamLogic(mockTeamRepository.Object, mockDriverRepository.Object);
             ml = new MotorLogic(mockMotorRepository.Object);
         }
 
