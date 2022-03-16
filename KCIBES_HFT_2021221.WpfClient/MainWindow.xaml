@@ -9,11 +9,9 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        <StackPanel VerticalAlignment="Center">
-            <Button Command="{Binding DriverCommand}" Content="Drivers" Padding="10" Margin="10" FontSize="30"/>
-            <Button Command="{Binding TeamCommand}" Content="Teams" Padding="10" Margin="10" FontSize="30" />
-            <Button Command="{Binding MotorCommand}" Content="Motors" Padding="10" Margin="10" FontSize="30"/>
-        </StackPanel>
-    </Grid>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button Command="{Binding DriverCommand}"  Content="Drivers" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
+        <Button Command="{Binding TeamCommand}" Content="Teams" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
+        <Button Command="{Binding MotorCommand}"  Content="Motors" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
+    </StackPanel>
 </Window>
