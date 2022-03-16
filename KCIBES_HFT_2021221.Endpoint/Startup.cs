@@ -27,6 +27,8 @@ namespace KCIBES_HFT_2021221.Endpoint
             services.AddTransient<ITeamRepository, TeamRepository>();
             services.AddTransient<IMotorRepository, MotorRepository>();
             services.AddTransient<F1DbContext, F1DbContext>();
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

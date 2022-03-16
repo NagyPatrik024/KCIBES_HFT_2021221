@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:KCIBES_HFT_2021221.WpfClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-
+        <StackPanel VerticalAlignment="Center">
+            <Button Command="{Binding DriverCommand}" Content="Drivers" Padding="10" Margin="10" FontSize="30"/>
+            <Button Command="{Binding TeamCommand}" Content="Teams" Padding="10" Margin="10" FontSize="30" />
+            <Button Command="{Binding MotorCommand}" Content="Motors" Padding="10" Margin="10" FontSize="30"/>
+        </StackPanel>
     </Grid>
 </Window>
