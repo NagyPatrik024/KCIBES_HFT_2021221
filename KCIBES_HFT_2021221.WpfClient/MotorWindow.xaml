@@ -17,8 +17,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" >
             <Button Content="Create" Command="{Binding CreateMotorCommand}" Margin="10" Padding="10"/>
-            <Button Content="Delete" Command="{Binding DeleteMotorCommand}" Margin="10" Padding="10"/>
             <Button Content="Update" Command="{Binding UpdateMotorCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete" Command="{Binding DeleteMotorCommand}" Margin="10" Padding="10"/>
         </StackPanel>
         <ListBox Grid.Column="0" ItemsSource="{Binding Motor}" SelectedItem="{Binding SelectedMotor}">
             <ListBox.ItemTemplate>

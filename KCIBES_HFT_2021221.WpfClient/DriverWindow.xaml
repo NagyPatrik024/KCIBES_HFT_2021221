@@ -17,8 +17,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" >
             <Button Content="Create" Command="{Binding CreateDriverCommand}" Margin="10" Padding="10"/>
-            <Button Content="Delete" Command="{Binding DeleteDriverCommand}" Margin="10" Padding="10"/>
             <Button Content="Update" Command="{Binding UpdateDriverCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete" Command="{Binding DeleteDriverCommand}" Margin="10" Padding="10"/>
         </StackPanel>
         <ListBox Grid.Column="0" ItemsSource="{Binding Driver}" SelectedItem="{Binding SelectedDriver}">
             <ListBox.ItemTemplate>
@@ -34,10 +34,8 @@
             <TextBox Text="{Binding SelectedDriver.Age}" Padding="10"/>
             <Label Content="Wins" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedDriver.Wins}" Padding="10"/>
-            <Label Content="TeamId" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedDriver.TeamId}" Padding="10"/>
-            <Label Content="MotorId" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedDriver.MotorId}" Padding="10"/>
+            <Label Content="{Binding SelectedDriver.TeamId}" ContentStringFormat="Team Id: {0}" Background="LightBlue" Padding="10"/>
+            <Label Content="{Binding SelectedDriver.MotorId}" ContentStringFormat="Motor Id: {0}" Background="LightBlue" Padding="10"/>
         </StackPanel>
     </Grid>
 </Window>
