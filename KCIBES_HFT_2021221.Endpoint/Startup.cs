@@ -1,4 +1,5 @@
 using KCIBES_HFT_2021221.Data;
+using KCIBES_HFT_2021221.Endpoint.Services;
 using KCIBES_HFT_2021221.Logic;
 using KCIBES_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +44,7 @@ namespace KCIBES_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

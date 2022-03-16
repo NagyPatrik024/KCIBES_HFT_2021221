@@ -62,7 +62,7 @@ namespace KCIBES_HFT_2021221.WpfClient
         {
             if (!IsInDesignMode)
             {
-                Driver = new RestCollection<Driver>("http://localhost:17873/", "driver");
+                Driver = new RestCollection<Driver>("http://localhost:17873/", "driver", "hub");
 
                 CreateDriverCommand = new RelayCommand(() =>
                 {

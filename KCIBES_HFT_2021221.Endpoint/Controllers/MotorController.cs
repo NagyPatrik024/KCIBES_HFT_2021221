@@ -1,7 +1,9 @@
-﻿using KCIBES_HFT_2021221.Logic;
+﻿using KCIBES_HFT_2021221.Endpoint.Services;
+using KCIBES_HFT_2021221.Logic;
 using KCIBES_HFT_2021221.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace KCIBES_HFT_2021221.Endpoint
     {
 
         IMotorLogic ml;
+        IHubContext<SignalRHub> hub;
 
-        public MotorController(IMotorLogic ml)
+        public MotorController(IMotorLogic ml, IHubContext<SignalRHub> hub)
         {
             this.ml = ml;
+            this.hub = hub;
         }
 
         // GET: /motor
@@ -40,6 +44,7 @@ namespace KCIBES_HFT_2021221.Endpoint
         public void Post([FromBody] Motor motor)
         {
             ml.CreateOne(motor.Id, motor.Type);
+            hub.Clients.All.SendAsync("MotorCreated", motor);
         }
 
         // PUT /motor
@@ -47,13 +52,16 @@ namespace KCIBES_HFT_2021221.Endpoint
         public void Put([FromBody] Motor motor)
         {
             ml.UpdateMotor(motor.Id, motor.Type);
+            hub.Clients.All.SendAsync("MotorUpdated", motor);
         }
 
         // DELETE /motor/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var motortodelete = ml.GetOne(id);
             ml.DeleteOne(id);
+            hub.Clients.All.SendAsync("MotorDeleted", motortodelete);
         }
     }
 }

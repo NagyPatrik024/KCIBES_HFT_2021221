@@ -1,7 +1,9 @@
-﻿using KCIBES_HFT_2021221.Logic;
+﻿using KCIBES_HFT_2021221.Endpoint.Services;
+using KCIBES_HFT_2021221.Logic;
 using KCIBES_HFT_2021221.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +16,12 @@ namespace KCIBES_HFT_2021221.Endpoint
     public class DriverController : ControllerBase
     {
         IDriverLogic dl;
+        IHubContext<SignalRHub> hub;
 
-        public DriverController(IDriverLogic dl)
+        public DriverController(IDriverLogic dl, IHubContext<SignalRHub> hub)
         {
             this.dl = dl;
+            this.hub = hub;
         }
 
         // GET: /driver
@@ -39,6 +43,7 @@ namespace KCIBES_HFT_2021221.Endpoint
         public void Post([FromBody] Driver driver)
         {
             dl.CreateOne(driver.Id, driver.Name, driver.Age, driver.Wins, driver.TeamId, driver.MotorId);
+            hub.Clients.All.SendAsync("DriverCreated", driver);
         }
 
         // PUT /driver
@@ -46,13 +51,16 @@ namespace KCIBES_HFT_2021221.Endpoint
         public void Put([FromBody] Driver driver)
         {
             dl.UpdateDriver(driver.Id, driver.Name, driver.Age, driver.Wins, driver.TeamId, driver.MotorId);
+            hub.Clients.All.SendAsync("DriverUpdated", driver);
         }
 
         // DELETE /driver/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var drivertodelete = dl.GetOne(id);
             dl.DeleteOne(id);
+            hub.Clients.All.SendAsync("DriverDeleted", drivertodelete);
         }
 
     }
