@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{CF0916
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KCIBES_HFT_2021221.WpfClient", "KCIBES_HFT_2021221.WpfClient\KCIBES_HFT_2021221.WpfClient.csproj", "{4DCCC879-EDCE-46CE-95A4-94C16C7F9A24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{5216CE35-DAAD-4BC2-896F-C67E1BC4E2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5216CE35-DAAD-4BC2-896F-C67E1BC4E2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5216CE35-DAAD-4BC2-896F-C67E1BC4E2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DCCC879-EDCE-46CE-95A4-94C16C7F9A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DCCC879-EDCE-46CE-95A4-94C16C7F9A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DCCC879-EDCE-46CE-95A4-94C16C7F9A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DCCC879-EDCE-46CE-95A4-94C16C7F9A24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{7AB55213-85A8-403C-AB75-E63FB42406C3} = {107F9D94-1E1D-46F1-91D3-B65A73B60EC6}
 		{D26E43FA-1F57-40FD-9573-C80852451934} = {107F9D94-1E1D-46F1-91D3-B65A73B60EC6}
 		{5216CE35-DAAD-4BC2-896F-C67E1BC4E2EB} = {107F9D94-1E1D-46F1-91D3-B65A73B60EC6}
+		{4DCCC879-EDCE-46CE-95A4-94C16C7F9A24} = {06A958FB-E83D-4477-AEF6-A7D4CF6B0228}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84DE93FA-7FBC-4FC4-B33F-77F2DCC5AFA2}
