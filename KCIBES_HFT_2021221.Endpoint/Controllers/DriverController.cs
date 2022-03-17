@@ -42,7 +42,7 @@ namespace KCIBES_HFT_2021221.Endpoint
         [HttpPost]
         public void Post([FromBody] Driver driver)
         {
-            dl.CreateOne(driver.Id, driver.Name, driver.Age, driver.Wins, driver.TeamId, driver.MotorId);
+            dl.CreateOne(driver.Id, driver.Name, driver.Age, driver.Wins, (int)driver.TeamId, (int)driver.MotorId);
             hub.Clients.All.SendAsync("DriverCreated", driver);
         }
 
@@ -50,7 +50,7 @@ namespace KCIBES_HFT_2021221.Endpoint
         [HttpPut]
         public void Put([FromBody] Driver driver)
         {
-            dl.UpdateDriver(driver.Id, driver.Name, driver.Age, driver.Wins, driver.TeamId, driver.MotorId);
+            dl.UpdateDriver(driver.Id, driver.Name, driver.Age, driver.Wins, (int)driver.TeamId, (int)driver.MotorId);
             hub.Clients.All.SendAsync("DriverUpdated", driver);
         }
 

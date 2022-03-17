@@ -31,10 +31,10 @@ namespace KCIBES_HFT_2021221.Models
         public int Wins { get; set; }
 
         [ForeignKey(nameof(Team))]
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
 
         [ForeignKey(nameof(Motor))]
-        public int MotorId { get; set; }
+        public int? MotorId { get; set; }
 
 
     }

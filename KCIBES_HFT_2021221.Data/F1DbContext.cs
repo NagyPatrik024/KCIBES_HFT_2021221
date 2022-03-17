@@ -36,7 +36,7 @@ namespace KCIBES_HFT_2021221.Data
                 .HasOne(driver => driver.Team)
                 .WithMany(team => team.Drivers)
                 .HasForeignKey(driver => driver.TeamId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
             });
             modelBuilder.Entity<Driver>(entity =>
             {
@@ -44,7 +44,7 @@ namespace KCIBES_HFT_2021221.Data
                 .HasOne(driver => driver.Motor)
                 .WithMany(motor => motor.Drivers)
                 .HasForeignKey(driver => driver.MotorId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
             });
             modelBuilder.Entity<Team>(entity =>
             {
@@ -52,7 +52,7 @@ namespace KCIBES_HFT_2021221.Data
                 .HasOne(team => team.Motor)
                 .WithMany(motor => motor.Teams)
                 .HasForeignKey(team => team.MotorId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
             });
 
 

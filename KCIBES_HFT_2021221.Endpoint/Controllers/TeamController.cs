@@ -42,7 +42,7 @@ namespace KCIBES_HFT_2021221.Endpoint
         [HttpPost]
         public void Post([FromBody] Team team)
         {
-            tl.CreateOne(team.Id, team.Name, team.MotorId, team.Team_Chief);
+            tl.CreateOne(team.Id, team.Name, (int)team.MotorId, team.Team_Chief);
             hub.Clients.All.SendAsync("TeamCreated", team);
         }
 
@@ -50,7 +50,7 @@ namespace KCIBES_HFT_2021221.Endpoint
         [HttpPut]
         public void Put([FromBody] Team team)
         {
-            tl.UpdateTeam(team.Id, team.Name, team.MotorId, team.Team_Chief);
+            tl.UpdateTeam(team.Id, team.Name, (int)team.MotorId, team.Team_Chief);
             hub.Clients.All.SendAsync("TeamUpdated", team);
         }
 

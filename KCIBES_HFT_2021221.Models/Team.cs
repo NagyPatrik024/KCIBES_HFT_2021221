@@ -31,7 +31,7 @@ namespace KCIBES_HFT_2021221.Models
         public string Team_Chief { get; set; }
 
         [ForeignKey(nameof(Motor))]
-        public int MotorId { get; set; }
+        public int? MotorId { get; set; }
 
         public Team()
         {
