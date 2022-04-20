@@ -57,6 +57,7 @@ namespace KCIBES_HFT_2021221.WpfClient
             {
                 Motor = new RestCollection<Motor>("http://localhost:17873/", "motor", "hub");
 
+
                 CreateMotorCommand = new RelayCommand(() =>
                 {
                     Motor.Add(new Motor()

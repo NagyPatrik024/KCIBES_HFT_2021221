@@ -17,6 +17,8 @@ namespace KCIBES_HFT_2021221.WpfClient
     {
 
         public RestCollection<Driver> Driver { get; set; }
+        public RestCollection<Motor> Motor { get; set; }
+        public RestCollection<Team> Team { get; set; }
 
         private Driver selectedDriver;
 
@@ -29,13 +31,11 @@ namespace KCIBES_HFT_2021221.WpfClient
                 {
                     selectedDriver = new Driver()
                     {
+                        Id = value.Id,
                         Name = value.Name,
                         Age = value.Age,
-                        Motor = value.Motor,
-                        MotorId = value.MotorId,
-                        Team = value.Team,
-                        TeamId = value.TeamId,
-                        Id = value.Id,
+                        MotorId = value.MotorId-1,
+                        TeamId = value.TeamId-1,
                         Wins = value.Wins
                     };
                     OnPropertyChanged();
@@ -63,17 +63,17 @@ namespace KCIBES_HFT_2021221.WpfClient
             if (!IsInDesignMode)
             {
                 Driver = new RestCollection<Driver>("http://localhost:17873/", "driver", "hub");
-
+                Motor = new RestCollection<Motor>("http://localhost:17873/", "motor", "hub");
+                Team = new RestCollection<Team>("http://localhost:17873/", "team", "hub");
+                
                 CreateDriverCommand = new RelayCommand(() =>
                 {
                     Driver.Add(new Driver()
                     {
                         Name = selectedDriver.Name,
                         Age = selectedDriver.Age,
-                        Motor = selectedDriver.Motor,
-                        MotorId = selectedDriver.MotorId,
-                        Team = selectedDriver.Team,
-                        TeamId = selectedDriver.TeamId,
+                        MotorId = selectedDriver.MotorId+1,
+                        TeamId = selectedDriver.TeamId+1,
                         Wins = selectedDriver.Wins
                     });
                 });
@@ -82,6 +82,8 @@ namespace KCIBES_HFT_2021221.WpfClient
                 {
                     try
                     {
+                        SelectedDriver.MotorId++;
+                        SelectedDriver.TeamId++;
                         Driver.Update(SelectedDriver);
                     }
                     catch (ArgumentException ex)

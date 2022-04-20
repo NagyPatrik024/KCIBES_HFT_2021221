@@ -30,7 +30,6 @@
         <StackPanel Grid.Column="2">
             <Label Content="Type" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedMotor.Type}" Padding="10"/>
-            <Label Content="{Binding SelectedMotor.Id}" ContentStringFormat="Motor Id: {0}" Background="LightBlue" Padding="10"/>
         </StackPanel>
     </Grid>
 </Window>

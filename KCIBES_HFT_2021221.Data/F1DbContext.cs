@@ -104,7 +104,7 @@ namespace KCIBES_HFT_2021221.Data
 
             modelBuilder.Entity<Motor>().HasData(Ferrari, Mercedes, Honda, Renault, MotorDELETE, MotorUPDATE);
             modelBuilder.Entity<Team>().HasData(TeamFerrari, TeamMclaren, TeamAlfaRomeo, TeamAlphatauri, TeamAlpine, TeamAstonMartin, TeamHass, TeamMercedes, TeamRedBull, TeamWilliams, TeamDELETE, TeamUPDATE);
-            modelBuilder.Entity<Driver>().HasData(VER, HAM, BOT, NOR, PER, SAI, LEC, RIC, GAS, ALO, OCO, VET, STR, TSU, RUS, LAT, RAI, GIO, MSC, MAZ, DriverDELETE, DriverUPDATE);
+            modelBuilder.Entity<Driver>().HasData( VER, HAM, BOT, NOR, PER, SAI, LEC, RIC, GAS, ALO, OCO, VET, STR, TSU, RUS, LAT, RAI, GIO, MSC, MAZ, DriverDELETE, DriverUPDATE);
         }
     }
 }

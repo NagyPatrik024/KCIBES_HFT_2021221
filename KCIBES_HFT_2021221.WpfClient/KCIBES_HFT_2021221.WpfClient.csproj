@@ -6,6 +6,28 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\helmet.jpg" />
+    <None Remove="Images\motor.jpg" />
+    <None Remove="Images\teamlogos.jpg" />
+    <None Remove="Images\track.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\helmet.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\motor.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\teamlogos.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\track.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />

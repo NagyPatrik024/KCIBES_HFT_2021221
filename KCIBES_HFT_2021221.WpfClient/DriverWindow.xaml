@@ -34,8 +34,22 @@
             <TextBox Text="{Binding SelectedDriver.Age}" Padding="10"/>
             <Label Content="Wins" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedDriver.Wins}" Padding="10"/>
-            <Label Content="{Binding SelectedDriver.TeamId}" ContentStringFormat="Team Id: {0}" Background="LightBlue" Padding="10"/>
-            <Label Content="{Binding SelectedDriver.MotorId}" ContentStringFormat="Motor Id: {0}" Background="LightBlue" Padding="10"/>
+            <Label Content="Team" Background="LightBlue" Padding="10"/>
+            <ComboBox ItemsSource="{Binding Team}" SelectedItem="{Binding SelectedDriver.TeamId}" SelectedIndex="{Binding SelectedDriver.TeamId}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Content="Motor" Background="LightBlue" Padding="10"/>
+            <ComboBox ItemsSource="{Binding Motor}" SelectedItem="{Binding SelectedDriver.MotorId}" SelectedIndex="{Binding SelectedDriver.MotorId}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Type}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
     </Grid>
 </Window>

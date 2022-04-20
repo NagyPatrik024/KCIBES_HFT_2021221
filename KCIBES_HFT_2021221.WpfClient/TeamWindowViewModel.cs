@@ -16,6 +16,7 @@ namespace KCIBES_HFT_2021221.WpfClient
     public class TeamWindowViewModel : ObservableRecipient
     {
         public RestCollection<Team> Team { get; set; }
+        public RestCollection<Motor> Motor { get; set; }
 
         private Team selectedTeam;
 
@@ -31,7 +32,7 @@ namespace KCIBES_HFT_2021221.WpfClient
                         Id = value.Id,
                         Motor = value.Motor,
                         Name = value.Name,
-                        MotorId = value.MotorId,
+                        MotorId = value.MotorId-1,
                         Team_Chief = value.Team_Chief
                     };
                     OnPropertyChanged();
@@ -59,15 +60,15 @@ namespace KCIBES_HFT_2021221.WpfClient
             if (!IsInDesignMode)
             {
                 Team = new RestCollection<Team>("http://localhost:17873/", "team", "hub");
+                Motor = new RestCollection<Motor>("http://localhost:17873/", "motor", "hub");
 
                 CreateTeamCommand = new RelayCommand(() =>
                 {
                     Team.Add(new Team()
                     {
-                        Id = SelectedTeam.Id,
                         Motor = SelectedTeam.Motor,
                         Name = SelectedTeam.Name,
-                        MotorId = SelectedTeam.MotorId,
+                        MotorId = SelectedTeam.MotorId+1,
                         Team_Chief = SelectedTeam.Team_Chief
                     });
                 });
@@ -76,6 +77,7 @@ namespace KCIBES_HFT_2021221.WpfClient
                 {
                     try
                     {
+                        SelectedTeam.MotorId++;
                         Team.Update(SelectedTeam);
                     }
                     catch (ArgumentException ex)

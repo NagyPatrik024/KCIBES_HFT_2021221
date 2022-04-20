@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KCIBES_HFT_2021221.WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-        <Button Command="{Binding DriverCommand}"  Content="Drivers" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
-        <Button Command="{Binding TeamCommand}" Content="Teams" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
-        <Button Command="{Binding MotorCommand}"  Content="Motors" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
-    </StackPanel>
+    <Grid x:Name="grid">
+        <local:display x:Name="display"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding DriverCommand}"  Content="Drivers" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
+            <Button Command="{Binding TeamCommand}" Content="Teams" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
+            <Button Command="{Binding MotorCommand}"  Content="Motors" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
+        </StackPanel>
+    </Grid>
 </Window>

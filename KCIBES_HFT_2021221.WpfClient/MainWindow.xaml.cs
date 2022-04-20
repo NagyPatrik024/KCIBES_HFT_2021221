@@ -23,6 +23,19 @@ namespace KCIBES_HFT_2021221.WpfClient
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+            display.InvalidateVisual();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+            display.InvalidateVisual();
         }
     }
 }

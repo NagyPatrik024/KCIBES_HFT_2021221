@@ -27,12 +27,19 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="2">
+        <StackPanel Grid.Column="2" x:Name="stack">
             <Label Content="Name" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedTeam.Name}" Padding="10"/>
             <Label Content="Team Chief" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedTeam.Team_Chief}" Padding="10"/>
-            <Label Content="{Binding SelectedTeam.MotorId}" ContentStringFormat="Motor Id: {0}" Background="LightBlue" Padding="10"/>
+            <Label Content="Motor" Background="LightBlue" Padding="10"/>
+            <ComboBox ItemsSource="{Binding Motor}" SelectedItem="{Binding SelectedTeam.MotorId}" SelectedIndex="{Binding SelectedTeam.MotorId}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Type}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
     </Grid>
 </Window>
