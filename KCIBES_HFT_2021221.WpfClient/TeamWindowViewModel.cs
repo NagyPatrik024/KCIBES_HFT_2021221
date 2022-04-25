@@ -30,7 +30,6 @@ namespace KCIBES_HFT_2021221.WpfClient
                     selectedTeam = new Team()
                     {
                         Id = value.Id,
-                        Motor = value.Motor,
                         Name = value.Name,
                         MotorId = value.MotorId-1,
                         Team_Chief = value.Team_Chief
@@ -66,7 +65,6 @@ namespace KCIBES_HFT_2021221.WpfClient
                 {
                     Team.Add(new Team()
                     {
-                        Motor = SelectedTeam.Motor,
                         Name = SelectedTeam.Name,
                         MotorId = SelectedTeam.MotorId+1,
                         Team_Chief = SelectedTeam.Team_Chief

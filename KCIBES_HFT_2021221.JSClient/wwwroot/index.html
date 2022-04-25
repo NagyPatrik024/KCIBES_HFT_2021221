@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Js Client</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Driver Page</h1>
+
+    <div id="driverForm">
+        <label>Driver Name</label>
+        <input type="text" id="drivername" />
+        <label>Driver Age</label>
+        <input type="number" id="driverage" />
+        <label>Driver MotorId</label>
+        <input type="number" id="drivermotorid" />
+        <label>Driver TeamId</label>
+        <input type="number" id="driverteamid" />
+        <label>Wins</label>
+        <input type="number" id="driverwins" />
+        <button type="button" onclick="drivercreate();">Add Driver</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>MotorId</th>
+                <th>TeamId</th>
+                <th>Wins</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultareadriver">
+        </tbody>
+    </table>
+
+    <h1>Team Page</h1>
+
+    <div id="teamForm">
+        <label>Team Name</label>
+        <input type="text" id="teamname" />
+        <label>Team MotorId</label>
+        <script>  </script> <!-- TODO--> 
+        <input type="text" id="teammotorid"/>
+        <label>Team Chief</label>
+        <input type="text" id="teamchief" />
+        <button type="button" onclick="teamcreate();">Add Team</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>MotorId</th>
+                <th>Chief</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultareateam">
+        </tbody>
+    </table>
+
+    <h1>Motor Page</h1>
+
+    <div id="motorForm">
+        <label>Motor Type</label>
+        <input type="text" id="motortype" />
+        <button type="button" onclick="motorcreate();">Add Motor</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultareamotor">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

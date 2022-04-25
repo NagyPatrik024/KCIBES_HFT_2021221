@@ -1,0 +1,62 @@
+﻿* {
+    font-size: 1.05em;
+    margin: auto auto;
+}
+
+h1 {
+    font-size: 1.50em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#driverForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+    #driverForm label, button, input {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #driverForm label {
+        font-weight: bold;
+    }
+
+#teamForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+    #teamForm label, button, input {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #teamForm label {
+        font-weight: bold;
+    }
+
+#motorForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+    #motorForm label, button, input {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #motorForm label {
+        font-weight: bold;
+    }
+
+
+body {
+}

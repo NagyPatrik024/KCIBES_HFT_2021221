@@ -38,7 +38,10 @@ namespace KCIBES_HFT_2021221.Endpoint
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(x => x.AllowCredentials()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithOrigins("http://localhost:48100"));
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
