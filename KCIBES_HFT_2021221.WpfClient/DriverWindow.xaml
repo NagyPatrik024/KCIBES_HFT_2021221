@@ -43,7 +43,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <Label Content="Motor" Background="LightBlue" Padding="10"/>
-            <ComboBox ItemsSource="{Binding Motor}" SelectedItem="{Binding SelectedDriver.MotorId}" SelectedIndex="{Binding SelectedDriver.MotorId}">
+            <ComboBox  ItemsSource="{Binding Motor}" SelectedItem="{Binding SelectedDriver.MotorId}" SelectedIndex="{Binding SelectedDriver.MotorId}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Type}" />

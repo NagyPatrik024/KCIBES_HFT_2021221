@@ -27,15 +27,16 @@ namespace KCIBES_HFT_2021221.WpfClient
             {
                 if (value != null)
                 {
-                    selectedTeam = new Team()
+                    SetProperty(ref selectedTeam, new Team()
                     {
                         Id = value.Id,
                         Name = value.Name,
-                        MotorId = value.MotorId-1,
+                        MotorId = value.MotorId - 1,
                         Team_Chief = value.Team_Chief
-                    };
+                    });
                     OnPropertyChanged();
                     (DeleteTeamCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateTeamCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
 
             }
@@ -63,35 +64,47 @@ namespace KCIBES_HFT_2021221.WpfClient
 
                 CreateTeamCommand = new RelayCommand(() =>
                 {
-                    Team.Add(new Team()
+                    if (SelectedTeam.MotorId != null && SelectedTeam.Name != null && SelectedTeam.Team_Chief != null)
                     {
-                        Name = SelectedTeam.Name,
-                        MotorId = SelectedTeam.MotorId+1,
-                        Team_Chief = SelectedTeam.Team_Chief
-                    });
+                        Team.Add(new Team()
+                        {
+                            Name = SelectedTeam.Name,
+                            MotorId = SelectedTeam.MotorId + 1,
+                            Team_Chief = SelectedTeam.Team_Chief
+                        });
+                    }
                 });
 
                 UpdateTeamCommand = new RelayCommand(() =>
                 {
-                    try
+                    if (SelectedTeam.Id != 0)
                     {
-                        SelectedTeam.MotorId++;
-                        Team.Update(SelectedTeam);
+                        try
+                        {
+                            Team.Update(new Team()
+                            {
+                                Id = SelectedTeam.Id,
+                                Name = SelectedTeam.Name,
+                                MotorId = SelectedTeam.MotorId + 1,
+                                Team_Chief = SelectedTeam.Team_Chief
+                            });
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        OnPropertyChanged("SelectedTeam");
                     }
-                    catch (ArgumentException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                });
+                },
+                () => SelectedTeam.Id != 0);
 
                 DeleteTeamCommand = new RelayCommand(() =>
                 {
                     Team.Delete(SelectedTeam.Id);
+                    selectedTeam = new Team();
+                    OnPropertyChanged("SelectedTeam");
                 },
-               () =>
-               {
-                   return SelectedTeam != null;
-               });
+               () => SelectedTeam.Id != 0);
                 SelectedTeam = new Team();
             }
         }

@@ -26,13 +26,14 @@ namespace KCIBES_HFT_2021221.WpfClient
             {
                 if (value != null)
                 {
-                    selectedMotor = new Motor()
+                    SetProperty(ref selectedMotor, new Motor()
                     {
                         Id = value.Id,
                         Type = value.Type
-                    };
+                    });
                     OnPropertyChanged();
                     (DeleteMotorCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateMotorCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
 
             }
@@ -57,35 +58,44 @@ namespace KCIBES_HFT_2021221.WpfClient
             {
                 Motor = new RestCollection<Motor>("http://localhost:17873/", "motor", "hub");
 
-
                 CreateMotorCommand = new RelayCommand(() =>
                 {
-                    Motor.Add(new Motor()
+                    if (SelectedMotor != null)
                     {
-                        Type = selectedMotor.Type
-                    });
+                        Motor.Add(new Motor()
+                        {
+                            Type = selectedMotor.Type
+                        });
+                    }
+
                 });
 
                 UpdateMotorCommand = new RelayCommand(() =>
                 {
-                    try
+                    if (SelectedMotor.Id != 0)
                     {
-                        Motor.Update(SelectedMotor);
+                        try
+                        {
+                            Motor.Update(SelectedMotor);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        OnPropertyChanged("SelectedMotor");
                     }
-                    catch (ArgumentException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                });
+                }, () => SelectedMotor.Id != 0);
 
                 DeleteMotorCommand = new RelayCommand(() =>
                 {
-                    Motor.Delete(SelectedMotor.Id);
+                    if (SelectedMotor.Type != null)
+                    {
+                        Motor.Delete(SelectedMotor.Id);
+                        selectedMotor = new Motor();
+                        OnPropertyChanged("SelectedMotor");
+                    }
                 },
-               () =>
-               {
-                   return SelectedMotor != null;
-               });
+               () => SelectedMotor.Id != 0);
                 SelectedMotor = new Motor();
             }
         }

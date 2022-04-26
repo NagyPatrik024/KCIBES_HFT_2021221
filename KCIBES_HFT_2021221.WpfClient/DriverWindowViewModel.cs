@@ -29,19 +29,19 @@ namespace KCIBES_HFT_2021221.WpfClient
             {
                 if (value != null)
                 {
-                    selectedDriver = new Driver()
+                    SetProperty(ref selectedDriver, new Driver()
                     {
                         Id = value.Id,
                         Name = value.Name,
                         Age = value.Age,
-                        MotorId = value.MotorId-1,
-                        TeamId = value.TeamId-1,
+                        MotorId = value.MotorId - 1,
+                        TeamId = value.TeamId - 1,
                         Wins = value.Wins
-                    };
+                    });
                     OnPropertyChanged();
                     (DeleteDriverCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateDriverCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
-
             }
         }
 
@@ -65,43 +65,59 @@ namespace KCIBES_HFT_2021221.WpfClient
                 Driver = new RestCollection<Driver>("http://localhost:17873/", "driver", "hub");
                 Motor = new RestCollection<Motor>("http://localhost:17873/", "motor", "hub");
                 Team = new RestCollection<Team>("http://localhost:17873/", "team", "hub");
-                
+
                 CreateDriverCommand = new RelayCommand(() =>
-                {
-                    Driver.Add(new Driver()
                     {
-                        Name = selectedDriver.Name,
-                        Age = selectedDriver.Age,
-                        MotorId = selectedDriver.MotorId+1,
-                        TeamId = selectedDriver.TeamId+1,
-                        Wins = selectedDriver.Wins
+                        if (SelectedDriver.Name != null && SelectedDriver.MotorId != null && SelectedDriver.TeamId != null)
+                        {
+                            Driver.Add(new Driver()
+                            {
+                                Name = selectedDriver.Name,
+                                Age = selectedDriver.Age,
+                                MotorId = selectedDriver.MotorId + 1,
+                                TeamId = selectedDriver.TeamId + 1,
+                                Wins = selectedDriver.Wins
+                            });
+                        }
                     });
-                    
-                });
 
                 UpdateDriverCommand = new RelayCommand(() =>
                 {
-                    try
+                    if (SelectedDriver.Id != 0)
                     {
-                        SelectedDriver.MotorId++;
-                        SelectedDriver.TeamId++;
-                        Driver.Update(SelectedDriver);
+                        try
+                        {
+                            Driver.Update(new Driver()
+                            {
+                                Id = SelectedDriver.Id,
+                                Name = SelectedDriver.Name,
+                                Age = SelectedDriver.Age,
+                                MotorId = SelectedDriver.MotorId + 1,
+                                TeamId = SelectedDriver.TeamId + 1,
+                                Wins = SelectedDriver.Wins
+                            });
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        OnPropertyChanged("SelectedDriver");
                     }
-                    catch (ArgumentException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                });
+                },
+                () => SelectedDriver.Id != 0);
 
                 DeleteDriverCommand = new RelayCommand(() =>
                 {
-                    Driver.Delete(SelectedDriver.Id);
-                    selectedDriver = null;
+                    if (SelectedDriver.Id != 0)
+                    {
+                        Driver.Delete(SelectedDriver.Id);
+                        selectedDriver = new Driver();
+                        OnPropertyChanged("SelectedDriver");
+                    }
+
                 },
-               () =>
-               {
-                   return SelectedDriver != null;
-               });
+
+               () => SelectedDriver.Id != 0);
                 SelectedDriver = new Driver();
             }
         }
