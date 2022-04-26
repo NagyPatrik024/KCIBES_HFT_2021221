@@ -76,6 +76,7 @@ namespace KCIBES_HFT_2021221.WpfClient
                         TeamId = selectedDriver.TeamId+1,
                         Wins = selectedDriver.Wins
                     });
+                    
                 });
 
                 UpdateDriverCommand = new RelayCommand(() =>
@@ -95,6 +96,7 @@ namespace KCIBES_HFT_2021221.WpfClient
                 DeleteDriverCommand = new RelayCommand(() =>
                 {
                     Driver.Delete(SelectedDriver.Id);
+                    selectedDriver = null;
                 },
                () =>
                {
