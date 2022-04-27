@@ -35,7 +35,7 @@
             <Label Content="Wins" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedDriver.Wins}" Padding="10"/>
             <Label Content="Team" Background="LightBlue" Padding="10"/>
-            <ComboBox ItemsSource="{Binding Team}" SelectedItem="{Binding SelectedDriver.TeamId}" SelectedIndex="{Binding SelectedDriver.TeamId}">
+            <ComboBox ItemsSource="{Binding Team}" SelectedIndex="{Binding SelectedDriver.TeamId}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Name}"/>
@@ -43,7 +43,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <Label Content="Motor" Background="LightBlue" Padding="10"/>
-            <ComboBox  ItemsSource="{Binding Motor}" SelectedItem="{Binding SelectedDriver.MotorId}" SelectedIndex="{Binding SelectedDriver.MotorId}">
+            <ComboBox  ItemsSource="{Binding Motor}" SelectedIndex="{Binding SelectedDriver.MotorId}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Type}" />

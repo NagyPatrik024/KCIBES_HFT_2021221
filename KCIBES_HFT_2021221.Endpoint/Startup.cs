@@ -29,7 +29,7 @@ namespace KCIBES_HFT_2021221.Endpoint
             services.AddTransient<IMotorRepository, MotorRepository>();
             services.AddTransient<F1DbContext, F1DbContext>();
 
-            services.AddSignalR();
+            services.AddSignalR();          
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,6 +42,7 @@ namespace KCIBES_HFT_2021221.Endpoint
             .AllowAnyMethod()
             .AllowAnyHeader()
             .WithOrigins("http://localhost:48100"));
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -49,6 +50,8 @@ namespace KCIBES_HFT_2021221.Endpoint
                 endpoints.MapControllers();
                 endpoints.MapHub<SignalRHub>("/hub");
             });
+
+            
         }
     }
 }

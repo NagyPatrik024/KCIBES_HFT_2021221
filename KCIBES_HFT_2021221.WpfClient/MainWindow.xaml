@@ -13,7 +13,7 @@
     <Grid x:Name="grid">
         <local:display x:Name="display"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding DriverCommand}"  Content="Drivers" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
+            <Button  Command="{Binding DriverCommand}" Content="Drivers" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
             <Button Command="{Binding TeamCommand}" Content="Teams" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
             <Button Command="{Binding MotorCommand}"  Content="Motors" Padding="10" Margin="40" Height="160" Width="160" FontSize="30"></Button>
         </StackPanel>

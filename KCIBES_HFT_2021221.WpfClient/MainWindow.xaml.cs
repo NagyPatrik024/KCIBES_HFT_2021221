@@ -37,5 +37,7 @@ namespace KCIBES_HFT_2021221.WpfClient
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
         }
+
+        
     }
 }

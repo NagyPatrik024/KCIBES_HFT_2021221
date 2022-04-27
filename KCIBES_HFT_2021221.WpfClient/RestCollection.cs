@@ -6,7 +6,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,7 +15,7 @@ namespace KCIBES_HFT_2021221.WpfClient.RestCollection
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl, string pingableEndpoint = "driver")
         {
             bool isOk = false;
             do
@@ -159,7 +158,6 @@ namespace KCIBES_HFT_2021221.WpfClient.RestCollection
         {
             HttpResponseMessage response =
                 await client.PostAsJsonAsync(endpoint, item);
-
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadAsAsync<RestExceptionInfo>();

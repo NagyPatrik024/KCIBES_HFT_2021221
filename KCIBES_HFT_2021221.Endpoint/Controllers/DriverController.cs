@@ -1,13 +1,10 @@
 ﻿using KCIBES_HFT_2021221.Endpoint.Services;
 using KCIBES_HFT_2021221.Logic;
 using KCIBES_HFT_2021221.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace KCIBES_HFT_2021221.Endpoint
 {

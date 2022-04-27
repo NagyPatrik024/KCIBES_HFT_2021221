@@ -71,11 +71,11 @@ namespace KCIBES_HFT_2021221.WpfClient
                         {
                             Driver.Add(new Driver()
                             {
-                                Name = selectedDriver.Name,
-                                Age = selectedDriver.Age,
-                                MotorId = selectedDriver.MotorId + 1,
-                                TeamId = selectedDriver.TeamId + 1,
-                                Wins = selectedDriver.Wins
+                                Name = SelectedDriver.Name,
+                                Age = SelectedDriver.Age,
+                                MotorId = SelectedDriver.MotorId + 1,
+                                TeamId = SelectedDriver.TeamId + 1,
+                                Wins = SelectedDriver.Wins
                             });
                         }
                     });
@@ -100,7 +100,6 @@ namespace KCIBES_HFT_2021221.WpfClient
                         {
                             MessageBox.Show(ex.Message);
                         }
-                        OnPropertyChanged("SelectedDriver");
                     }
                 },
                 () => SelectedDriver.Id != 0);
@@ -111,7 +110,6 @@ namespace KCIBES_HFT_2021221.WpfClient
                     {
                         Driver.Delete(SelectedDriver.Id);
                         selectedDriver = new Driver();
-                        OnPropertyChanged("SelectedDriver");
                     }
 
                 },
@@ -120,6 +118,7 @@ namespace KCIBES_HFT_2021221.WpfClient
                 SelectedDriver = new Driver();
             }
         }
+
     }
 }
 
