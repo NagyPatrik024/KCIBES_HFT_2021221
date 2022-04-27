@@ -21,7 +21,6 @@ namespace KCIBES_HFT_2021221.WpfClient
         public RestCollection<Team> Team { get; set; }
 
         private Driver selectedDriver;
-
         public Driver SelectedDriver
         {
             get { return selectedDriver; }

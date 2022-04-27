@@ -88,7 +88,7 @@ function driverdisplay() {
     document.getElementById('resultareadriver').innerHTML = "";
     drivers.forEach(t => {
         log(t);
-        document.getElementById('resultareadriver').innerHTML += "<tr><td>" + t.id + `</td><td><input type="text" id="drivername_${t.id}" value="${t.name}">` + `</td><td><input type="text" "drivername_${t.id}" value="${t.age}">` + `</td><td><input type="text" "drivername_${t.id}" value="${t.motorId}">` + `</td><td><input type="text" "drivername_${t.id}" value="${t.teamId}">` + `</td><td><input type="text" "drivername_${t.id}" value="${t.wins}">` + `</td><td><button type="button" onclick="driverremove(${t.id});">Delete</button><button type="button" onclick="driverupdate(${t.id});">Update</button></td></tr>`;
+        document.getElementById('resultareadriver').innerHTML += "<tr><td>" + t.id + `</td><td><input type="text" id="drivername_${t.id}" value="${t.name}">` + `</td><td><input type="text" id="driverage_${t.id}" value="${t.age}">` + `</td><td><input type="text" id="drivermotorid_${t.id}" value="${t.motorId}">` + `</td><td><input type="text" id="driverteamid_${t.id}" value="${t.teamId}">` + `</td><td><input type="text" id="driverwins_${t.id}" value="${t.wins}">` + `</td><td><button type="button" onclick="driverremove(${t.id});">Delete</button><button type="button" onclick="driverupdate(${t.id});">Update</button></td></tr>`;
     });
 }
 
@@ -96,7 +96,7 @@ function teamdisplay() {
     document.getElementById('resultareateam').innerHTML = "";
     teams.forEach(t => {
         log(t);
-        document.getElementById('resultareateam').innerHTML += "<tr><td>" + t.id + `</td><td><input type="text" id="teamname_${t.id}" value="${t.id}">` + `</td><td><input type="text" id="teamname_${t.id}" value="${t.name}">` + `</td><td><input type="text" id="teamname_${t.id}" value="${t.motorId}">` + `</td><td><input type="text" id="teamname_${t.id}" value="${t.team_Chief}">` + `</td><td><button type="button" onclick="teamremove(${t.id});">Delete</button><button type="button" onclick="teamupdate(${t.id});">Update</button></td></tr>`;
+        document.getElementById('resultareateam').innerHTML += "<tr><td>" + t.id + `</td><td><input type="text" id="teamname_${t.id}" value="${t.name}">` +`</td><td><input type="text" id="teammotorid_${t.id}" value="${t.motorId}">` + `</td><td><input type="text" id="teamchief_${t.id}" value="${t.team_Chief}">` + `</td><td><button type="button" onclick="teamremove(${t.id});">Delete</button><button type="button" onclick="teamupdate(${t.id});">Update</button></td></tr>`;
     });
 }
 
@@ -142,23 +142,119 @@ function driverremove(id) {
         .catch((error) => { log("Error: ", error); });
 }
 
-
 function driverupdate(id) {
     log("UpdateDriver" + id);
-    let name = document.getElementById('drivername_'+ id).value;
+    let name = document.getElementById('drivername_' + id).value;
     let age = document.getElementById('driverage_' + id).value;
     let motorid = document.getElementById('drivermotorid_' + id).value;
     let teamid = document.getElementById('driverteamid_' + id).value;
     let wins = document.getElementById('driverwins_' + id).value;
 
-    fetch('http://localhost:17873/driver/', {
+    fetch('http://localhost:17873/driver', {
         method: 'PUT',
         headers: { 'Content-Type': "application/json" },
-        body: JSON.stringify({ CountryID: id, CountryName: name, StateForm: statform }),
+        body: JSON.stringify({ id:id, name: name, age: age, motorId: motorid, teamId: teamid, wins: wins }),
     })
         .then(response => response)
         .then(data => {
-            log("Country updated");
+            log("TeamUpdated");
+            getDriver();
+        })
+        .catch((error) => { log("Error: ", error); });
+}
+
+function teamcreate() {
+    let name = document.getElementById('teamname').value;
+    let motorid = document.getElementById('teammotorid').value;
+    let chief= document.getElementById('teamchief').value;
+    fetch('http://localhost:17873/team/', {
+        method: 'POST',
+        headers: { 'Content-Type': "application/json" },
+        body: JSON.stringify({ Name:name, MotorId:motorid, Team_Chief:chief }),
+    })
+        .then(response => response)
+        .then(data => {
+            log("TeamCreated");
+            getDriver();
+        })
+        .catch((error) => { log("Error: ", error); });
+}
+
+function teamupdate(id) {
+    log("UpdateTeam" + id);
+    let name = document.getElementById('teamname_' + id).value;
+    let motorid = document.getElementById('teammotorid_' + id).value;
+    let chief = document.getElementById('teamchief_' + id).value;
+
+    fetch('http://localhost:17873/team/', {
+        method: 'PUT',
+        headers: { 'Content-Type': "application/json" },
+        body: JSON.stringify({ Id:id, Name: name, MotorId: motorid, Team_Chief: chief }),
+    })
+        .then(response => response)
+        .then(data => {
+            log("TeamUpdated");
+            getDriver();
+        })
+        .catch((error) => { log("Error: ", error); });
+}
+
+function teamremove(id) {
+    fetch('http://localhost:17873/team/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': "application/json" },
+        body: null,
+    })
+        .then(response => response)
+        .then(data => {
+            log("TeamDeleted");
+            getDriver();
+        })
+        .catch((error) => { log("Error: ", error); });
+}
+
+function motorcreate() {
+    let type= document.getElementById('motortype').value;
+   
+    fetch('http://localhost:17873/motor/', {
+        method: 'POST',
+        headers: { 'Content-Type': "application/json" },
+        body: JSON.stringify({ Type:motortype }),
+    })
+        .then(response => response)
+        .then(data => {
+            log("MotorCreated");
+            getDriver();
+        })
+        .catch((error) => { log("Error: ", error); });
+}
+
+function motorupdate(id) {
+    log("UpdateMotor" + id);
+    let type = document.getElementById('motortype_' + id).value;
+
+    fetch('http://localhost:17873/motor/', {
+        method: 'PUT',
+        headers: { 'Content-Type': "application/json" },
+        body: JSON.stringify({ Id:id, Type: motortype}),
+    })
+        .then(response => response)
+        .then(data => {
+            log("MotorUpdated");
+            getDriver();
+        })
+        .catch((error) => { log("Error: ", error); });
+}
+
+function motorremove(id) {
+    fetch('http://localhost:17873/motor/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': "application/json" },
+        body: null,
+    })
+        .then(response => response)
+        .then(data => {
+            log("MotorDeleted");
             getDriver();
         })
         .catch((error) => { log("Error: ", error); });
