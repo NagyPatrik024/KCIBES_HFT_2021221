@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -77,6 +78,8 @@ namespace KCIBES_HFT_2021221.WpfClient
                                 TeamId = SelectedDriver.TeamId + 1,
                                 Wins = SelectedDriver.Wins
                             });
+                            Thread.Sleep(170);
+                            Driver.Update(Driver.First());
                         }
                     });
 

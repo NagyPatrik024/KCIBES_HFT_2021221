@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -66,8 +67,9 @@ namespace KCIBES_HFT_2021221.WpfClient
                         {
                             Type = selectedMotor.Type
                         });
+                        Thread.Sleep(170);
+                        Motor.Update(Motor.First());
                     }
-
                 });
 
                 UpdateMotorCommand = new RelayCommand(() =>

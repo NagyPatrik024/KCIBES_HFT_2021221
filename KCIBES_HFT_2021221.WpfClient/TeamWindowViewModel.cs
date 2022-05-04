@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -72,6 +73,8 @@ namespace KCIBES_HFT_2021221.WpfClient
                             MotorId = SelectedTeam.MotorId + 1,
                             Team_Chief = SelectedTeam.Team_Chief
                         });
+                        Thread.Sleep(170);
+                        Team.Update(Team.First());
                     }
                 });
 
